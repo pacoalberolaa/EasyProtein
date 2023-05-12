@@ -1,0 +1,130 @@
+.carousel {
+  position: relative;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
+}
+
+
+
+.titulo{
+  text-align: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  color: black;
+  font-size: 30px;
+}
+
+
+.divRecomendado{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  text-align: center;
+
+
+}
+.protein{
+  margin-top: -10px;
+}
+
+.protein:hover{
+  margin-top: -10px;
+}
+
+.divRecomendado > div > img{
+  width: 65%;
+  object-fit: cover;
+}
+
+
+
+.divRecomendadoProducto{
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+  border: orange 2px solid;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px gray;
+}
+
+.divRecomendadoProducto:hover{
+  box-shadow: 10px 10px 25px black;
+  border: #008858 3px solid;
+}
+
+.prodEstrella{
+  text-align: center;
+}
+
+
+
+.divPromociones{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  justify-content: center;
+  text-align: center;
+}
+
+.divPromocionesProducto{
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+  border: orange 2px solid;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px gray;
+  padding-bottom: 20%;
+
+}
+
+@media (max-width: 768px) {
+  .divPromociones {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+}
+
+.divPromocionesProducto:hover{
+  box-shadow: 10px 10px 25px black;
+  border: #008858 3px solid;
+}
+
+.divPromociones > div > img{
+  object-fit: cover;
+}
+
+.barritaLayeredProm{
+  margin-top: 13%;
+  margin-bottom: 10%;
+  width: 65%;
+}
+
+.carbosProm{
+  width:60%;
+}
+
+.cafeinaProm{
+  width:55%;
+}
+
+
+.creatinaCreapureProm{
+  width: 65%;
+}
+
+.peanutButterProm{
+  width: 67%;
+}
+
+.proteinaVeganProm{
+  width: 77%;
+}
+
+
+
+.before{
+  color: grey;
+  font-size: 15px;
+  margin-right: 2%;
+  text-decoration: line-through;
+}

@@ -1,0 +1,174 @@
+body > img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    margin-bottom: -2%;
+    margin-top: 5%;
+    object-fit: cover;
+  }
+
+/* Estilos generales del footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 50px 0;
+
+  }
+
+  /* Estilos para el contenedor */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  /* Estilos para las columnas del footer */
+  .footer-column {
+    flex-basis: 30%;
+    margin-bottom: 30px;
+  }
+
+  /* Estilos para el logo */
+  .footer-logo img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  /* Estilos para el contenido "Sobre Nosotros" */
+  .footer-about h3 {
+    margin-top: 0;
+  }
+
+  /* Estilos para las redes sociales */
+  .footer-social h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+
+  .footer-social ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-social li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .footer-social li:last-child {
+    margin-right: 0;
+  }
+
+  .footer-social a {
+    color: #fff;
+  }
+
+  .footer-social i {
+    margin-right: 5px;
+  }
+
+  /* Estilos para los enlaces útiles */
+  .footer-links h3 {
+    margin-top: 0;
+  }
+
+  .footer-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+
+  .footer-links a {
+    color: #fff;
+  }
+
+  /* Estilos para el formulario de newsletter */
+  .footer-newsletter h3 {
+    margin-top: 0;
+  }
+
+  .footer-newsletter form {
+    display: flex;
+  }
+
+  .footer-newsletter input[type="email"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+  }
+
+  .footer-newsletter button {
+    padding: 10px 20px;
+    background-color: #ff9900;
+    border: none;
+    color: #fff;
+  }
+
+  .footer-newsletter button:hover {
+    background-color: #cc7a00;
+  }
+
+  /* Estilos para el contenido "Contacto" */
+  .footer-contact h3 {
+    margin-top: 0;
+  }
+
+  .footer-contact p {
+    margin: 0;
+  }
+
+  /* Estilos para las formas de pago */
+  .footer-payment h3 {
+    margin-top: 0;
+  }
+
+  .footer-payment img {
+    height: auto;
+  }
+
+  /* Estilos para el contenido del fondo del footer */
+  .bottom-footer {
+    background-color: #222;
+    padding: 20px 0;
+  }
+
+  .bottom-footer p {
+    margin: 0;
+  }
+
+  /* Estilos para el contenido del fondo del footer a la izquierda */
+  .bottom-footer-left {
+    float: left;
+  }
+
+  /* Estilos para el contenido del fondo del footer a la derecha */
+  .bottom-footer-right {
+    float: right;
+  }
+
+  .bottom-footer-right ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .bottom-footer-right li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  .bottom-footer-right li:last-child {
+    margin-right: 0;
+  }
+
+  .bottom-footer-right a {
+    color: #fff;
+  }
