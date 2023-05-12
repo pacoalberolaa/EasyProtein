@@ -40,16 +40,71 @@
     </div>
 
     <h1>Batidos de Proteina en Polvo</h1>
+
+    <div class="sidebar">
+        <h3>Filtros</h3>
+        <ul>
+            <li>
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre">
+                <button class="btBuscar">Filtrar</button>
+            </li>
+            <li>
+                <label for="tipo">Tipo</label>
+                <select id="tipo">
+                    <option value="">Seleccione...</option>
+                    <option value="vino">Vino</option>
+                    <option value="cerveza">Cerveza</option>
+                    <option value="licor">Licor</option>
+                </select>
+                <button class="btBuscar">Filtrar</button>
+            </li>
+            <li>
+                <label for="sabor">Sabor</label>
+                <select id="sabor">
+                    <option value="">Seleccione...</option>
+                    <option value="dulce">Dulce</option>
+                    <option value="amargo">Amargo</option>
+                    <option value="acido">Ácido</option>
+                </select>
+                <button class="btBuscar" >Filtrar</button>
+            </li>
+            <li>
+                <label for="volumen">Volumen</label>
+                <select id="volumen">
+                    <option value="">Seleccione...</option>
+                    <option value="750ml">750ml</option>
+                    <option value="500ml">500ml</option>
+                    <option value="330ml">330ml</option>
+                </select>
+                <button class="btBuscar">Filtrar</button>
+            </li>
+            <li>
+                <label for="precio">Precio</label>
+                <select id="precio">
+                    <option value="">Seleccione...</option>
+                    <option value="10-20">10€ - 20€</option>
+                    <option value="20-30">20€ - 30€</option>
+                    <option value="30-50">30€ - 50€</option>
+                </select>
+                <button class="btBuscar">Filtrar</button>
+            </li>
+        </ul>
+    </div>
+
     <div class="buttons">
+        <button>Proteina whey</button>
         <button>Proteina vegana</button>
         <button>Proteina sabor chocolate</button>
         <button>Proteina sabor vainilla</button>
         <button>Proteina sabor fresa</button>
         <button>Proteina sabor cafe</button>
+        <button>Proteina de Hsn</button>
+        <button>Proteina de MyProtein</button>
     </div>
 
-    <div>
-        <div th:each="proteina:${proteinas}" class="divProd">
+    <div class="proteins">
+        <div th:each="proteina:${proteinas}" class="divProteins">
             <img th:src="${proteina.imagenUrl}">
             <p th:text="${proteina.nombre}"></p>
             <p>Marca Hsn</p>

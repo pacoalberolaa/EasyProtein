@@ -25,6 +25,11 @@ public class Aminoacidos {
     private Double precio;
     private Double cantidad;
     private String tipo;
+    private String sabor1;
+    private String sabor2;
+    private String sabor3;
+    private String sabor4;
+    private String sabor5;
     private String descripcion;
     private String imagenUrl;
 
@@ -35,7 +40,4 @@ public class Aminoacidos {
     @JoinColumn(name = "id_cesta")
     private Cesta cesta;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "sabores")
-    List<Sabores> sabores;
 }

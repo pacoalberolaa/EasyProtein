@@ -50,7 +50,7 @@
 
 .divRecomendadoProducto:hover{
   box-shadow: 10px 10px 25px black;
-  border: #008858 3px solid;
+  border: #008858 2px solid;
 }
 
 .prodEstrella{
@@ -86,7 +86,7 @@
 
 .divPromocionesProducto:hover{
   box-shadow: 10px 10px 25px black;
-  border: #008858 3px solid;
+  border: #008858 2px solid;
 }
 
 .divPromociones > div > img{

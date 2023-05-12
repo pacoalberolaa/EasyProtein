@@ -23,6 +23,11 @@ public class Proteina {
     private Double precio;
     private Double cantidad;
     private String tipo;
+    private String sabor1;
+    private String sabor2;
+    private String sabor3;
+    private String sabor4;
+    private String sabor5;
     private String descripcion;
     @Column(name = "imagen_url")
     private String imagenUrl;

@@ -25,6 +25,11 @@ public class Carbohidratos {
     private Double precio;
     private Double cantidad;
     private String tipo;
+    private String sabor1;
+    private String sabor2;
+    private String sabor3;
+    private String sabor4;
+    private String sabor5;
     private String descripcion;
     private String imagenUrl;
 
@@ -32,9 +37,5 @@ public class Carbohidratos {
     @ManyToOne
     @JoinColumn(name = "id_cesta")
     private Cesta cesta;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "carbohidratos")
-    List<SaboresAvena> saboresAvenas;
 
 }
