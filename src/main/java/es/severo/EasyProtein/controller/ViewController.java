@@ -29,12 +29,6 @@ public class ViewController {
         return "index";
     }
 
-    @GetMapping("/proteinas")
-    public String proteinas(Model model, String nombre) {
-        model.addAttribute("proteinas", databaseService.findAllProteinas());
-        return "proteinas";
-    }
-
     @GetMapping("/login")
     public String login() {
         return "login";
@@ -44,6 +38,20 @@ public class ViewController {
     public String registro() {
         return "registrarse";
     }
+
+    @GetMapping("/proteinas")
+    public String proteinas(Model model, String nombre) {
+        model.addAttribute("proteinas", databaseService.findAllProteinas());
+        return "proteinas";
+    }
+
+    @GetMapping("/creatinas")
+    public String creatina(Model model, String nombre) {
+        model.addAttribute("creatina", databaseService.findAllCreatina());
+        return "creatina";
+    }
+
+
 }
 
 
