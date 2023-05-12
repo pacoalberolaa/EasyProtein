@@ -77,13 +77,6 @@
 
 }
 
-@media (max-width: 768px) {
-  .divPromociones {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-  }
-}
-
 .divPromocionesProducto:hover{
   box-shadow: 10px 10px 25px black;
   border: #008858 2px solid;
@@ -120,11 +113,29 @@
   width: 77%;
 }
 
-
-
 .before{
   color: grey;
   font-size: 15px;
   margin-right: 2%;
   text-decoration: line-through;
+}
+
+
+@media (max-width: 768px) {
+  .divPromociones {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+   .divPromocionesProducto{
+       margin-bottom: 5%;
+   }
+
+  .divRecomendado{
+     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .divRecomendadoProducto{
+     margin-bottom: 5%
+  }
 }
