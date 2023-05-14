@@ -13,8 +13,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 
-@Table(name = "vitaminas")
-public class Vitaminas {
+@Table(name = "aminoacidos")
+public class Aminoacido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,10 +22,20 @@ public class Vitaminas {
     private String marca;
     private Double precio;
     private Double cantidad;
+    private String tipo;
+    private String sabor1;
+    private String sabor2;
+    private String sabor3;
+    private String sabor4;
+    private String sabor5;
     private String descripcion;
+    private String imagenUrl;
+
+    // Constructor
 
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_cesta")
     private Cesta cesta;
+
 }

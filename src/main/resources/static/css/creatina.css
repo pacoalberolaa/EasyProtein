@@ -211,15 +211,9 @@ width: 50%;
   box-shadow: 5px 5px 15px gray;
 }
 
-.divProductos a{
-  text-decoration: none;
-  color: black;
-}
-
 .divProductos:hover{
   box-shadow: 10px 10px 25px black;
   border: #008858 2px solid;
-  cursor: pointer;
 }
 
 

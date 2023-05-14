@@ -23,15 +23,15 @@ public class Cesta {
 
     @JsonIgnore
     @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Aminoacidos> aminoacidos;
+    private List<Aminoacido> aminoacidos;
 
     @JsonIgnore
     @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Barritas> barritas;
+    private List<Barrita> barritas;
 
     @JsonIgnore
     @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Carbohidratos> carbohidratos;
+    private List<Carbohidrato> carbohidratos;
 
     @JsonIgnore
     @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -43,7 +43,7 @@ public class Cesta {
 
     @JsonIgnore
     @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Vitaminas> vitaminas;
+    private List<Vitamina> vitaminas;
 
     @JsonIgnore
     @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)

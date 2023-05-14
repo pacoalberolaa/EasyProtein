@@ -7,33 +7,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 
-@Table(name = "aminoacidos")
-public class Aminoacidos {
+@Table(name = "barritas")
+public class Barrita {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String marca;
     private Double precio;
-    private Double cantidad;
-    private String tipo;
-    private String sabor1;
-    private String sabor2;
-    private String sabor3;
-    private String sabor4;
-    private String sabor5;
+    private String sabores;
     private String descripcion;
     private String imagenUrl;
-
-    // Constructor
 
     @JsonIgnore
     @ManyToOne

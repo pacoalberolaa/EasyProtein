@@ -1,9 +1,11 @@
 package es.severo.EasyProtein.controller;
 
+import es.severo.EasyProtein.entities.Proteina;
 import es.severo.EasyProtein.services.DatabaseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -43,6 +45,17 @@ public class ViewController {
     public String proteinas(Model model, String nombre) {
         model.addAttribute("proteinas", databaseService.findAllProteinas());
         return "proteinas";
+    }
+
+    @GetMapping("/proteina/{id}")
+    public String proteina(Model model, @PathVariable(value = "id") Long id) {
+        Proteina proteina = databaseService.findProteinaById(id).orElse(null);
+        if (proteina == null) {
+            return "redirect:/proteinas";
+        } else {
+            model.addAttribute("proteina", proteina);
+            return "productoProteina";
+        }
     }
 
     @GetMapping("/creatinas")

@@ -38,4 +38,6 @@ public class ApiController {
     public List<Proteina> proteinas() {
         return databaseService.findAllProteinas();
     }
+
+
 }

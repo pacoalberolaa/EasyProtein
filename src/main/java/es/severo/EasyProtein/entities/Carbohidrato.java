@@ -13,16 +13,21 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 
-@Table(name = "barritas")
-public class Barritas {
-
+@Table(name = "carbohidratos")
+public class Carbohidrato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String marca;
     private Double precio;
-    private String sabores;
+    private Double cantidad;
+    private String tipo;
+    private String sabor1;
+    private String sabor2;
+    private String sabor3;
+    private String sabor4;
+    private String sabor5;
     private String descripcion;
     private String imagenUrl;
 

@@ -6,6 +6,7 @@ import es.severo.EasyProtein.repository.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DatabaseService {
@@ -26,6 +27,11 @@ public class DatabaseService {
 
     public List<Proteina> findAllProteinas() {
         return proteinaRepository.findAll();
+    }
+
+    //findProteinaById
+    public Optional<Proteina> findProteinaById(Long id) {
+        return proteinaRepository.findById(id);
     }
 
     public List<Creatina> findAllCreatina() {

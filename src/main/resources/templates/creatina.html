@@ -1,112 +1,225 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Creatina</title>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <script src="/js/functions.js"></script>
+    <title>Creatinas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/creatina.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="icon" type="image/jpg" href="source/index/favicon-32x32.png"/>
+
 </head>
 <body>
-<style>
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 250px;
-  height: 100%;
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  transition: left 0.3s ease-in-out;
-  z-index: 1;
-  left: -250px;
-}
+<div class="opacity">
 
-.sidebar.active {
-  left: 0;
-}
-
-@media screen and (max-width: 600px) {
-  .sidebar {
-    left: -250px;
-  }
-
-  .sidebar.active {
-    left: 0;
-  }
-
-  .menu-toggle {
-    display: block;
-    z-index: -1; /* añadido */
-  }
-
-  .sidebar.active .menu-toggle {
-    display: none;
-  }
-}
-
-.menu-toggle {
-  display: none;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-size: 24px;
-  color: #fff;
-  cursor: pointer;
-  z-index: 2; /* añadido */
-}
-
-@media screen and (min-width: 600px) {
-  .abrir-menu {
-    display: none;
-  }
-}
-
-.menu-toggle {
-  position: absolute;
-  top: 20px;
-  left: -30px; /* Ancho del botón */
-  font-size: 24px;
-  color: #fff;
-  cursor: pointer;
-  z-index: 2;
-  transition: left 0.3s ease-in-out;
-}
-
-.sidebar.active + .menu-toggle {
-  left: 220px; /* Ancho de la barra lateral más margen */
-}
-
-
-</style>
-
-
-<div class="sidebar-container">
-    <button class="menu-toggle">&#9776; Menu</button>
-    <nav class="sidebar">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
+    <nav>
+        <div class="logo">
+            <img src="/source/index/logo.png" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <form onsubmit="search(); return false;">
+                <input type="text" placeholder="Buscar...">
+                <button type="submit"><img src="/source/index/lupa.png"  height="30px" width="auto"></button>
+            </form>
+        </div>
+        <div class="nav-buttons">
+            <a href="#"><img src="/source/index/cesta.png" alt="Boton cesta"></a>
+            <a href="#"><img src="/source/index/perfil.png" alt="Boton perfil"></a>
+        </div>
     </nav>
+
+    <div class="topnav" id="myTopnav">
+        <a th:href="@{/}" class="active">Inicio</a>
+        <a href="#proteinas">Proteinas</a>
+        <a href="#contact">Carbohidratos</a>
+        <a href="#about">Creatina</a>
+        <a href="#about">Vitaminas</a>
+        <a href="#about">Barritas</a>
+        <a href="#about">Otros</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <div class="titulo">
+        <img id="openNav" src="/source/index/hamburguer_button.png">
+        <h1>Batidos de Proteina en Polvo</h1>
+    </div>
+
 </div>
-<div class="contenido">
-    <h1>Contenido principal</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, urna a imperdiet dictum, justo risus interdum magna, eu vestibulum massa lorem at mauris.</p>
-</div>
-<button class="abrir-menu">&#9776; Menú</button>
+<!--    Barra lateral desplegable-->
+    <div id="myNav" class="sidenav">
+        <h3 class="filter-heading">Filtros</h3>
+        <ul class="filter-list">
+            <li>
+                <label for="nombre">Proteinas</label>
+                <div class="filter-input">
+                    <select id="nombre">
+                        <option value="">Seleccione...</option>
+                        <option value="whey">WheyProtein</option>
+                        <option value="isolate">Isolate</option>
+                        <option value="hidrolizada">Hidrolizada</option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <label for="type">Tipo</label>
+                <div class="filter-input">
+                    <select id="type">
+                        <option value="">Seleccione...</option>
+                        <option value="vino">Vino</option>
+                        <option value="cerveza">Cerveza</option>
+                        <option value="licor">Licor</option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <label for="flavour">Sabor</label>
+                <div class="filter-input">
+                    <select id="flavour">
+                        <option value="">Seleccione...</option>
+                        <option value="dulce">Dulce</option>
+                        <option value="amargo">Amargo</option>
+                        <option value="acido">Ácido</option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <label for="volume">Volumen</label>
+                <div class="filter-input">
+                    <select id="volume">
+                        <option value="">Seleccione...</option>
+                        <option value="750ml">750ml</option>
+                        <option value="500ml">500ml</option>
+                        <option value="330ml">330ml</option>
+                    </select>
+                </div>
+            </li>
+            <li>
+                <label for="price">Precio</label>
+                <div class="filter-input">
+                    <select id="price">
+                        <option value="">Seleccione...</option>
+                        <option value="10-20">10€ - 20€</option>
+                        <option value="20-30">20€ - 30€</option>
+                        <option value="30-50">30€ - 50€</option>
+                    </select>
+                </div>
+            </li>
+        </ul>
+        <button class="btBuscar">Filtrar</button>
+    </div>
+
+<!--    Barra de filtros-->
+    <div class="sidebar">
+        <h3 class="filter-head">Filtros</h3>
+        <ul class="list-filter">
+            <li>
+                <label for="name">Nombre</label>
+                <select id="name">
+                    <option value="">Seleccione...</option>
+                    <option value="vino">Vino</option>
+                    <option value="cerveza">Cerveza</option>
+                    <option value="licor">Licor</option>
+                </select>
+            </li>
+            <li>
+                <label for="tipo">Tipo</label>
+                <select id="tipo">
+                    <option value="">Seleccione...</option>
+                    <option value="vino">Vino</option>
+                    <option value="cerveza">Cerveza</option>
+                    <option value="licor">Licor</option>
+                </select>
+            </li>
+            <li>
+                <label for="sabor">Sabor</label>
+                <select id="sabor">
+                    <option value="">Seleccione...</option>
+                    <option value="dulce">Dulce</option>
+                    <option value="amargo">Amargo</option>
+                    <option value="acido">Ácido</option>
+                </select>
+            </li>
+            <li>
+                <label for="volumen">Volumen</label>
+                <select id="volumen">
+                    <option value="">Seleccione...</option>
+                    <option value="750ml">750ml</option>
+                    <option value="500ml">500ml</option>
+                    <option value="330ml">330ml</option>
+                </select>
+            </li>
+            <li>
+                <label for="precio">Precio</label>
+                <select id="precio">
+                    <option value="">Seleccione...</option>
+                    <option value="10-20">10€ - 20€</option>
+                    <option value="20-30">20€ - 30€</option>
+                    <option value="30-50">30€ - 50€</option>
+                </select>
+            </li>
+        </ul>
+        <button class="btFiltrar">Filtrar</button>
+    </div>
+
+    <div class="buttons">
+        <button>Proteina whey</button>
+        <button>Proteina vegana</button>
+        <button>Proteina sabor chocolate</button>
+        <button>Proteina sabor vainilla</button>
+        <button>Proteina sabor fresa</button>
+        <button>Proteina sabor cafe</button>
+        <button>Proteina de Hsn</button>
+        <button>Proteina de MyProtein</button>
+    </div>
+
+
+    <div class="productos">
+        <div class="divProductos">
+            <img th:src="${proteina.imagenUrl}">
+            <p th:text="${proteina.nombre}"></p>
+            <p>Marca Hsn</p>
+            <p>Precio 25€</p>
+        </div>
+    </div>
+
+
+
 
 <script>
-        const botonAbrirMenu = document.querySelector('.abrir-menu');
-        const sidebar = document.querySelector('.sidebar');
-        const contenido = document.querySelector('.contenido');
+    document.getElementById("openNav").addEventListener("click", function() {
+		document.getElementById("myNav").style.width = "250px";
+		document.getElementById("myNav").style.opacity = "1";
 
-        botonAbrirMenu.addEventListener('click', function() {
-            sidebar.classList.toggle('active');
-            contenido.classList.toggle('active');
-        });
- </script>
+		var elementos = document.getElementsByClassName("opacity");
+
+        for (var i = 0; i < elementos.length; i++) {
+            elementos[i].style.opacity = "0.2";
+        }
+
+
+
+});
+
+document.addEventListener("click", function(event) {
+   var sidenav = document.getElementById("myNav");
+   var openNavButton = document.getElementById("openNav");
+   var isInsideNav = event.target.closest('#myNav') !== null;
+   if (event.target !== sidenav && event.target !== openNavButton && !isInsideNav) {
+       sidenav.style.width = "0";
+
+       var elementos = document.getElementsByClassName("opacity");
+
+        for (var i = 0; i < elementos.length; i++) {
+            elementos[i].style.opacity = "1";
+        }
+   }
+});
+</script>
+
 
 </body>
 </html>
