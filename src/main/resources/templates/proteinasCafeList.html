@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Proteina Whey List</title>
+    <title>Proteinas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/general.css">
@@ -32,7 +32,7 @@
 
     <div class="topnav" id="myTopnav">
         <a th:href="@{/}">Inicio</a>
-        <a th:href="@{/proteinas}">Proteinas</a>
+        <a href="#" class="active">Proteinas</a>
         <a th:href="@{/carbos}">Carbohidratos</a>
         <a th:href="@{/creatinas}">Creatina</a>
         <a th:href="@{/vitaminas}">Vitaminas</a>
@@ -45,7 +45,7 @@
 
     <div class="titulo">
         <img id="openNav" src="/source/index/hamburguer_button.png">
-        <h1>Batidos de Proteina en Polvo (Whey)</h1>
+        <h1>Batidos de Proteina en Polvo</h1>
     </div>
 
 </div>
@@ -166,12 +166,12 @@
 </div>
 
 <div class="buttons">
-    <a href="#"><button id="whey-button">Proteina Whey</button></a>
+    <a th:href="@{/proteinas/tipo/{tipo}(tipoProteina='whey')}"><button>Proteina Whey</button></a>
     <a th:href="@{/proteinas/tipo/{tipo}(tipoProteina='vegana')}"><button>Proteina Vegana</button></a>
-    <button>Proteina sabor chocolate</button>
-    <button>Proteina sabor vainilla</button>
-    <button>Proteina sabor fresa</button>
-    <button>Proteina sabor cafe</button>
+    <a th:href="@{/proteinas/sabor/{sabor}(saborProteina='chocolate')}"><button>Proteina sabor Chocolate</button></a>
+    <a th:href="@{/proteinas/sabor/{sabor}(saborProteina='vainilla')}"><button>Proteina sabor Vainilla</button></a>
+    <a th:href="@{/proteinas/sabor/{sabor}(saborProteina='fresa')}"><button>Proteina sabor Fresa</button></a>
+    <a href="#"><button>Proteina sabor Cafe</button></a>
     <a th:href="@{/proteinas/marca/{marca}(marcaProteina='hsn')}"><button>Proteina de Hsn</button></a>
     <a th:href="@{/proteinas/marca/{marca}(marcaProteina='MyProtein')}"><button>Proteina de MyProtein</button></a>
 </div>
@@ -202,6 +202,8 @@
 
 
 <script>
+
+<!--Despliega la barra lateal-->
     document.getElementById("openNav").addEventListener("click", function() {
 		document.getElementById("myNav").style.width = "250px";
 		document.getElementById("myNav").style.opacity = "1";
@@ -211,11 +213,9 @@
         for (var i = 0; i < elementos.length; i++) {
             elementos[i].style.opacity = "0.2";
         }
-
-
-
 });
 
+<!--Cierra la barra lateral-->
 document.addEventListener("click", function(event) {
    var sidenav = document.getElementById("myNav");
    var openNavButton = document.getElementById("openNav");
@@ -231,21 +231,10 @@ document.addEventListener("click", function(event) {
    }
 });
 
-<!--Cambio de color de botones dependiendo de la pagina en la que nos encontremos-->
 
-<!-- Obtenemos la URL actual-->
-var currentUrl = window.location.href;
 
-<!-- Comprobamos si la URL contiene la ruta "/proteinas/tipo/whey"-->
-if (currentUrl.includes("/proteinas/tipo/%7Btipo%7D?tipoProteina=whey")) {
-<!--   Si la URL contiene la ruta "/proteinas/tipo/whey", cambiamos el color del botón correspondiente-->
-    var wheyButton = document.getElementById("whey-button");
-    wheyButton.style.backgroundColor = "#008858";
-    wheyButton.style.color = "white";
-    wheyButton.style.pointer = "default";
-}
+
 </script>
-
 
 </body>
 <footer>

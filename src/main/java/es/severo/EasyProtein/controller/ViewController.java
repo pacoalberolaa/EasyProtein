@@ -93,17 +93,38 @@ public class ViewController {
         return "redirect:/proteinas";
     }
 
-//    @GetMapping("/proteinas/marca/{marca}}")
-//    public String proteinasPorMarca(@PathVariable String tipo, @RequestParam(required = false) String tipoProteina, Model model) {
-//        if (tipoProteina.equalsIgnoreCase("hsn")){
-//            model.addAttribute("proteinas", databaseService.findProteinaByTipo("whey"));
-//            return "proteinasWheyList";
-//        } else if (tipoProteina.equalsIgnoreCase("myProtein")){
-//            model.addAttribute("proteinas", databaseService.findProteinaByTipo("vegana"));
-//            return "proteinasVeganList";
-//        }
-//        return "redirect:/proteinas";
-//    }
+    @GetMapping("/proteinas/marca/{marca}")
+    public String proteinasPorMarca(@PathVariable String marca, @RequestParam(required = false) String marcaProteina, Model model) {
+        if (marcaProteina.equalsIgnoreCase("hsn")){
+            model.addAttribute("proteinas", databaseService.findProteinaByMarca("hsn"));
+            return "proteinasHsnList";
+        } else if (marcaProteina.equalsIgnoreCase("MyProtein")){
+            model.addAttribute("proteinas", databaseService.findProteinaByMarca("MyProtein"));
+            return "proteinasMPList";
+        }
+        return "redirect:/proteinas";
+    }
+
+    @GetMapping("/proteinas/sabor/{sabor}")
+    public String proteinasPorSabor(@PathVariable String sabor, @RequestParam(required = false) String saborProteina, @RequestParam(required = false) Integer numSabor, Model model) {
+        List<Proteina> proteinas = databaseService.findProteinaBySabor("sabor" + sabor, sabor);
+
+        // Agrega las lógicas adicionales que necesites
+        // por ejemplo, puedes usar un switch para redirigir a la vista correspondiente
+        switch (saborProteina.toLowerCase()) {
+            case "chocolate":
+                model.addAttribute("proteinas", proteinas);
+                return "proteinasChocolateList";
+            case "fresa":
+                model.addAttribute("proteinas", proteinas);
+                return "proteinasFresaList";
+            case "cafe":
+                model.addAttribute("proteinas", proteinas);
+                return "proteinasCafeList";
+            default:
+                return "redirect:/proteinas";
+        }
+    }
 
     @RequestMapping(value = "/api/places", method = RequestMethod.GET)
     @SuppressWarnings("unchecked")
@@ -113,12 +134,6 @@ public class ViewController {
     }
 
 
-//
-//    @GetMapping("/proteinas/marca/myprotein")
-//    public String proteinasMyprotein(Model model) {
-//        model.addAttribute("proteinas", databaseService.findProteinaByMarca("myprotein"));
-//        return "proteinas";
-//    }
 //
 //    //filtrar proteina por el sabor
 //    @GetMapping("/proteinas/sabor/chocolate")

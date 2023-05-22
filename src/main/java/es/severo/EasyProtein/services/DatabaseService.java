@@ -34,6 +34,17 @@ public class DatabaseService {
     public List<Proteina> findProteinaByTipo(String tipo) {
         return proteinaRepository.findProteinaByTipo(tipo);
     }
+
+    //filtrar proteina por marca, donde la marca sea igual a "Optimum Nutrition"
+    public List<Proteina> findProteinaByMarca(String marca) {
+        return proteinaRepository.findProteinaByMarca(marca);
+    }
+
+    public List<Proteina> findProteinaBySabor(String columnaSabor, String sabor) {
+        return proteinaRepository.findProteinaBySabor(columnaSabor, sabor);
+    }
+
+
     //findProteinaById
     public Optional<Proteina> findProteinaById(Long id) {
         return proteinaRepository.findById(id);
