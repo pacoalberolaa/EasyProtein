@@ -190,6 +190,17 @@ h1{
   font-size: 16px;
   border-radius: 5px;
   cursor: pointer;
+  font-weight: bold;
+}
+
+.buttons button:hover {
+  background-color: #008858;
+  color: white;
+  border: #008858 2px solid;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 .productos{
@@ -200,6 +211,16 @@ grid-gap: 1rem;
 
 .productos img{
 width: 50%;
+}
+
+.precio{
+    font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    }
+
+.nombre{
+    font-size: 25px;
 }
 
 .divProductos{

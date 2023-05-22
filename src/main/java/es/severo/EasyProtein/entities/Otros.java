@@ -10,13 +10,12 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 
-@Table(name = "otros")
 public class Otros {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String producto;
+    private String tipos;
     private String marca;
     private Double precio;
     private String descripcion;
@@ -24,6 +23,6 @@ public class Otros {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_cesta")
-    private Cesta cesta;
+    @JoinColumn(name = "Productos_id")
+    private Producto producto;
 }

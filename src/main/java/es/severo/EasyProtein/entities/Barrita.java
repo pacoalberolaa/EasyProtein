@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 
-@Table(name = "barritas")
+@Table(name = "Barritas")
 public class Barrita {
 
     @Id
@@ -28,7 +28,7 @@ public class Barrita {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_cesta")
-    private Cesta cesta;
+    @JoinColumn(name = "Productos_id")
+    private Producto producto;
 
 }

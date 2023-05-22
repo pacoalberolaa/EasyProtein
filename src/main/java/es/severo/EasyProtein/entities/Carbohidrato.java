@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 
-@Table(name = "carbohidratos")
+@Table(name = "Carbohidratos")
 public class Carbohidrato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class Carbohidrato {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_cesta")
-    private Cesta cesta;
+    @JoinColumn(name = "Productos_id")
+    private Producto producto;
 
 }

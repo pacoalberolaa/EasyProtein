@@ -7,25 +7,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 
-@Table(name = "Vitaminas")
-public class Vitamina {
+@Table(name = "Productos")
+public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nombre;
-    private String marca;
-    private Double precio;
-    private Double cantidad;
-    private String descripcion;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "Productos_id")
-    private Producto producto;
+    @ManyToMany(mappedBy = "productos")
+    private List<Cesta> cestas;
 }
+
+

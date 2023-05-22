@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 
-@Table(name = "aminoacidos")
+@Table(name = "Aminoacidos")
 public class Aminoacido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,7 +35,7 @@ public class Aminoacido {
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_cesta")
-    private Cesta cesta;
+    @JoinColumn(name = "Productos_id")
+    private Producto producto;
 
 }

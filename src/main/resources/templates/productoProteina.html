@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/general.css">
     <link rel="stylesheet" href="/css/productoProteina.css">
     <link rel="stylesheet" href="/css/footer.css">
-    <link rel="icon" type="image/jpg" href="source/index/favicon-32x32.png">
+    <link rel="icon" type="image/jpg" href="/source/index/favicon-32x32.png">
     <script src="/js/functions.js"></script>
 </head>
 <body>
@@ -30,19 +30,19 @@
     </nav>
 
     <div class="topnav" id="myTopnav">
-        <a th:href="@{/}" class="active">Inicio</a>
-        <a href="#proteinas">Proteinas</a>
-        <a href="#contact">Carbohidratos</a>
-        <a href="#about">Creatina</a>
-        <a href="#about">Vitaminas</a>
-        <a href="#about">Barritas</a>
-        <a href="#about">Otros</a>
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/proteinas}">Proteinas</a>
+        <a th:href="@{/carbos}">Carbohidratos</a>
+        <a th:href="@{/creatinas}">Creatina</a>
+        <a th:href="@{/vitaminas}">Vitaminas</a>
+        <a th:href="@{/barritas}">Barritas</a>
+        <a th:href="@{/otros}">Otros</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
     </div>
 
-    <img src="/source/index/fondoProducto.png" alt="portada">
+    <img src="/source/index/fondoProducto.png" alt="portada" class="imgPortada">
 
     <div class="divProducto" th:object="${proteina}">
         <div class="producto-container">
@@ -51,21 +51,46 @@
             </div>
             <div class="producto-detalles">
                 <h3 th:text="${proteina.nombre}"></h3>
-                <p th:text="${proteina.descripcion}"></p>
-                <p th:text="${proteina.precio}"></p>
-                <label for="sabores">Sabores</label>
+                <span th:text="${proteina.descripcion}"></span>
+                <div class="divTipo">
+                    <span th:text="${proteina.tipo}" class="tipo"></span>
+                </div>
+                <span class="precio" th:text="${proteina.precio}"></span>
+                <span class="precio">€</span>
                 <div class="filter-input">
+                    <p for="sabores" class="fontBold">Sabores:</p>
                     <select id="sabores">
-                        <option value="">Seleccione...</option>
-                        <option value="whey" th:text="${proteina.sabor1}"></option>
-                        <option value="isolate" th:text="${proteina.sabor2}"></option>
-                        <option value="hidrolizada" th:text="${proteina.sabor3}"></option>
+                        <option value="">Sin Sabor</option>
+                        <option value="sabor1" th:text="${proteina.sabor1}"></option>
+                        <option value="sabor2" th:text="${proteina.sabor2}"></option>
+                        <option value="sabor3" th:text="${proteina.sabor3}"></option>
                     </select>
                 </div>
-                <p>Cantidad</p>
-                <input type="radio" id="cbox1" value="cantidad1"><label th:text="${proteina.cantidad1}"></label>
-                <input type="radio" id="cbox2" value="cantidad1"><label th:text="${proteina.cantidad2}"></label>
-                <input type="radio" id="cbox3" value="cantidad1"><label th:text="${proteina.cantidad3}"></label>
+                <p class="fontBold">Cantidad:</p>
+
+
+                <div class="radio-container">
+                    <label class="radio">
+                        <input type="radio" name="option" value="opcion1" checked>
+                        <div class="radio__button"></div>
+                        <span class="radio__text" th:text="${proteina.cantidad1}"></span>
+                        <span class="medida">g</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="option" value="opcion2">
+                        <div class="radio__button"></div>
+                        <span class="radio__text" th:text="${proteina.cantidad2}"></span>
+                        <span class="medida">kg</span>
+                    </label>
+                    <label class="radio">
+                        <input type="radio" name="option" value="opcion3">
+                        <div class="radio__button"></div>
+                        <span class="radio__text" th:text="${proteina.cantidad3}"></span>
+                        <span class="medida">kg</span>
+                    </label>
+                </div>
+
+                <br>
                 <button class="btComprar">Comprar</button>
             </div>
         </div>
@@ -115,4 +140,65 @@
 
 
 </body>
+<footer>
+
+    <div class="container">
+        <div class="footer-column">
+            <div class="footer-logo">
+                <img src="/source/index/logo.png" alt="Logo de la empresa">
+            </div>
+            <div class="footer-about">
+                <h3>Sobre Nosotros</h3>
+                <p>Somos una empresa dedicada a la venta de suplementos alimenticios de alta calidad.</p>
+            </div>
+            <div class="footer-social">
+                <h3>Síguenos en Redes Sociales</h3>
+                <ul>
+                    <li><img src="/source/index/logoFacebook.png" alt="logo Facebook" width="5%"></i><a>Facebook</a></li>
+                    <li><img src="/source/index/logoTwitter.png" alt="logo Twitter" width="5%"></i> <a>Twitter</a></li>
+                    <li><img src="/source/index/logoInsta.png" alt="logo Instagram" width="5%"></i> <a>Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-column">
+            <div class="footer-links">
+                <h3>Enlaces Útiles</h3>
+                <ul>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/proteinas}">Proteinas</a></li>
+                    <li><a th:href="@{/carbos}">Carbohidratos</a></li>
+                    <li><a th:href="@{/vitaminas}">Vitaminas</a></li>
+                    <li><a th:href="@{/barritas}">Barritas</a></li>
+                    <li><a th:href="@{/otros}">Otros</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-column">
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <p>Dirección: Calle Falsa 123, Ciudad Ficticia</p>
+                <p>Teléfono: (123) 456-7890</p>
+                <p>Correo electrónico: info@suplementos.com</p>
+            </div>
+            <div class="footer-payment">
+                <h3>Formas de Pago</h3>
+                <img src="/source/index/MasterCard_Logo.png" alt="Logos de formas de pago" width="20%">
+            </div>
+        </div>
+    </div>
+    <div class="bottom-footer">
+        <div class="container">
+            <div class="bottom-footer-left">
+                <p>Derechos Reservados © 2023 Suplementos.com</p>
+            </div>
+            <div class="bottom-footer-right">
+                <ul>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
 </html>

@@ -1,11 +1,7 @@
 package es.severo.EasyProtein.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
@@ -15,37 +11,21 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 
-@Table(name = "cesta")
 public class Cesta {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
     private Long id;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Aminoacido> aminoacidos;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "Cesta_has_Productos",
+            joinColumns = @JoinColumn(name = "Cesta_id"),
+            inverseJoinColumns = @JoinColumn(name = "Productos_id"))
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Barrita> barritas;
+    private List<Producto> productos;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Carbohidrato> carbohidratos;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Creatina> creatina;
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Proteina> proteina;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Vitamina> vitaminas;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "cesta", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Otros> otros;
 }

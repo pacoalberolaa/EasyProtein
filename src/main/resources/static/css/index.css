@@ -21,12 +21,30 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   justify-content: center;
   text-align: center;
+  cursor: pointer;
+}
 
-
+.imgProteinaWhey{
+   width: 58% !important;
 }
 .protein{
   margin-top: -10px;
 }
+
+.nombre{
+    font-size: 25px;
+}
+
+.marca{
+    font-size: 18px;
+    }
+
+.precio{
+    font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 18px;
+    }
 
 .protein:hover{
   margin-top: -10px;
@@ -35,6 +53,7 @@
 .divRecomendado > div > img{
   width: 65%;
   object-fit: cover;
+
 }
 
 
@@ -81,6 +100,16 @@
   box-shadow: 10px 10px 25px black;
   border: #008858 2px solid;
 }
+
+.name{
+    font-size: 20px;
+}
+
+.now{
+    font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    }
 
 .divPromociones > div > img{
   object-fit: cover;

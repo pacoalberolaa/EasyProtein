@@ -6,6 +6,12 @@ function myFunction() {
     x.className = "topnav";
   }
 }
+
+function reedirigirProtRecomendada() {
+  window.location.href = 'http://localhost:8081/proteina/1';
+}
+
+
 //
 //function search() {
 //  // Obtener el valor del input de búsqueda

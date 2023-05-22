@@ -34,11 +34,11 @@
     <div class="topnav" id="myTopnav">
         <a href="#home" class="active">Inicio</a>
         <a th:href="@{/proteinas}">Proteinas</a>
-        <a href="#contact">Carbohidratos</a>
-        <a href="#about">Creatina</a>
-        <a href="#about">Vitaminas</a>
-        <a href="#about">Barritas</a>
-        <a href="#about">Otros</a>
+        <a th:href="@{/carbos}">Carbohidratos</a>
+        <a th:href="@{/creatinas}">Creatina</a>
+        <a th:href="@{/vitaminas}">Vitaminas</a>
+        <a th:href="@{/barritas}">Barritas</a>
+        <a th:href="@{/otros}">Otros</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
             <i class="fa fa-bars"></i>
         </a>
@@ -87,29 +87,30 @@
     <div>
         <h2 class="titulo">PRODUCTOS RECOMENDADOS</h2>
             <div class="divRecomendado">
-                <div class="divRecomendadoProducto">
+                <div class="divRecomendadoProducto" onclick="reedirigirCreatinaRecomendado()">
                     <img src="/source/index/recomendados/creatina Hsn.png" alt="creatina">
-                    <p>Creatina Monohidratada</p>
-                    <p>Marca Hsn</p>
-                    <p>Precio 25€</p>
+                    <p class="nombre">Creatina Monohidratada</p>
+                    <p class="marca">Marca Hsn</p>
+                    <p class="precio">Desde 25€</p>
                 </div>
-                <div class="divRecomendadoProducto">
+                <div class="divRecomendadoProducto" onclick="reedirigirGlutaminaRecomendado()">
                     <img src="/source/index/recomendados/glutamina Amix.png" alt="glutamina">
-                    <p>Glutamina + BCAA</p>
-                    <p>Marca Amix</p>
-                    <p>Precio 20€</p>
+                    <p class="nombre" >Glutamina + BCAA</p>
+                    <p class="marca">Marca Amix</p>
+                    <p class="precio">Desde 20€</p>
                 </div>
-                <div class="divRecomendadoProducto">
+                <div class="divRecomendadoProducto" onclick="reedirigirMultVitRecomendado()">
                     <img src="/source/index/recomendados/multivitaminico Hsn.png" alt="multivitaminico">
-                    <p>Multivitaminico</p>
-                    <p>Marca Hsn</p>
-                    <p>Precio 2.50€</p>
+                    <p class="nombre">Multivitaminico</p>
+                    <p class="marca">Marca Hsn</p>
+                    <p class="precio">Desde 2.50€</p>
                 </div>
-                <div class="divRecomendadoProducto">
-                    <img class="protein" src="/source/index/recomendados/wheyProtein_MP.png" alt="wheyProtein">
-                    <p>Proteina Whey</p>
-                    <p>Marca My Protein</p>
-                    <p>Precio 33€</p>
+
+                <div class="divRecomendadoProducto" onclick="reedirigirProtRecomendada()">
+                    <img class="imgProteinaWhey" src="/source/index/recomendados/wheyProtein_MP.png" alt="whey protein">
+                    <p class="nombre">Whey Protein</p>
+                    <p class="marca">Marca MyProtein</p>
+                    <p class="precio">Desde 2.50€</p>
                 </div>
             </div>
     </div>
@@ -126,45 +127,45 @@
         <div class="divPromociones">
             <div class="divRecomendadoProducto">
                 <img class="barritaLayeredProm" src="/source/index/promociones/barrtias Layered desc.png" alt="Barritas">
-                <p>Barritas Layered</p>
+                <p class="name">Barritas Layered</p>
                 <p>Marca My Protein</p>
                 <span class="before">Antes 20€</span>
-                <span>Ahora 15€</span>
+                <span class="now">Ahora 15€</span>
             </div>
             <div class="divPromocionesProducto">
                 <img class="cafeinaProm" src="/source/index/promociones/cafeinaHsn.png" alt="cafeinaHsn">
-                <p>Cafeina Natural</p>
+                <p class="name">Cafeina Natural</p>
                 <p>Marca Amix</p>
                 <span class="before">Antes 23€</span>
-                <span>Ahora 19€</span>
+                <span class="now">Ahora 19€</span>
             </div>
             <div class="divPromocionesProducto">
                 <img class="carbosProm" src="./source/index/promociones/carbosVitarGo.png" alt="carbos">
-                <p>Multivitaminico</p>
+                <p class="name">Multivitaminico</p>
                 <p>Marca Amix</p>
                 <span class="before">Antes 40€</span>
-                <span>Ahora 35€</span>
+                <span class="now">Ahora 35€</span>
             </div>
             <div class="divPromocionesProducto">
                 <img class="creatinaCreapureProm" src="/source/index/promociones/creatinaCreapure.png" alt="creatinaCreapure">
-                <p>Creatina Creapure</p>
+                <p class="name">Creatina Creapure</p>
                 <p>Marca Hsn</p>
                 <span class="before">Antes 41€</span>
-                <span>Ahora 38€</span>
+                <span class="now">Ahora 38€</span>
             </div>
             <div class="divPromocionesProducto">
                 <img class="peanutButterProm" src="/source/index/promociones/peanutButter.png" alt="crema de cacahuete">
-                <p>Crema de Cacahuete</p>
+                <p class="name">Crema de Cacahuete</p>
                 <p>Marca Hsn</p>
                 <span class="before">Antes 9€</span>
-                <span>Ahora 5€</span>
+                <span class="now">Ahora 5€</span>
             </div>
             <div class="divPromocionesProducto">
                 <img class="proteinaVeganProm" src="/source/index/promociones/proteinaVeganPee.png" alt="proteina de guisante">
-                <p>Proteina Vegana</p>
+                <p class="name">Proteina Vegana</p>
                 <p>Marca Hsn</p>
                 <span class="before">Antes 21€</span>
-                <span>Ahora 18€</span>
+                <span class="now">Ahora 18€</span>
             </div>
         </div>
     </div>
@@ -195,12 +196,12 @@
             <div class="footer-links">
                 <h3>Enlaces Útiles</h3>
                 <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Proteinas</a></li>
-                    <li><a href="#">Carbohidratos</a></li>
-                    <li><a href="#">Vitaminas</a></li>
-                    <li><a href="#">Barritas</a></li>
-                    <li><a href="#">Otros</a></li>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/Proteinas}">Proteinas</a></li>
+                    <li><a th:href="@{/Carbos}"></a>Carbohidratos</li>
+                    <li><a th:href="@{/Vitaminas}">Vitaminas</a></li>
+                    <li><a th:href="@{/Barritas}">Barritas</a></li>
+                    <li><a th:href="@{/Otros}">Otros</a></li>
                 </ul>
             </div>
         </div>

@@ -3,6 +3,7 @@ package es.severo.EasyProtein.services;
 import es.severo.EasyProtein.entities.Creatina;
 import es.severo.EasyProtein.entities.Proteina;
 import es.severo.EasyProtein.repository.*;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,10 +30,29 @@ public class DatabaseService {
         return proteinaRepository.findAll();
     }
 
+    //filtrar proteina por tipo, donde el tipo sea igual a "whey"
+    public List<Proteina> findProteinaByTipo(String tipo) {
+        return proteinaRepository.findProteinaByTipo(tipo);
+    }
     //findProteinaById
     public Optional<Proteina> findProteinaById(Long id) {
         return proteinaRepository.findById(id);
     }
+
+//    select * from prot where 1 = 1
+//    string builder.append
+
+
+
+
+//    public List<Proteina> findProteinaByMarca(String marca) {
+//        return proteinaRepository.findProteinaByMarca(marca);
+//    }
+//
+//    public List<Proteina> findProteinaBySabor(String sabor) {
+//        return proteinaRepository.findProteinaBySabor(sabor);
+//    }
+
 
     public List<Creatina> findAllCreatina() {
         return creatinaRepository.findAll();

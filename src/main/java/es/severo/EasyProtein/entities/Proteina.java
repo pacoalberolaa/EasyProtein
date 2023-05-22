@@ -13,7 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 
-@Table(name = "proteina")
 public class Proteina {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,9 +32,11 @@ public class Proteina {
     private String descripcion;
     @Column(name = "imagen_url")
     private String imagenUrl;
+    @Column(name = "producto_estrella")
+    private boolean productoEstrella;
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "id_cesta")
-    private Cesta cesta;
+    @JoinColumn(name = "Productos_id")
+    private Producto producto;
 }

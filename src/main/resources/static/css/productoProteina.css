@@ -1,3 +1,7 @@
+.imgPortada{
+    width: 100%;
+}
+
 .divProducto {
    display: flex;
    align-items: center;
@@ -9,9 +13,9 @@
    margin-top: -250px;
    position: relative;
    z-index: 100;
-   margin-left: 20%;
-   margin-right: 20%;
-   border: 1px solid orange;
+   margin-left: 15%;
+   margin-right: 15%;
+   border: 2px solid orange;
  }
 
  .divProducto img {
@@ -20,20 +24,38 @@
    object-fit: cover;
    margin-right: 20px;
    border-radius: 5px;
+   margin-top: 5%;
+   background-color: #e6e6e6;
+   margin-top: 8%;
  }
 
  .divProducto h3 {
    margin-top: 0;
    margin-bottom: 10px;
-   font-size: 24px;
+   font-size: 54px;
    font-weight: bold;
+   margin-top: 10px;
  }
 
  .divProducto p {
-   margin-top: 0;
+   margin-top: 20px;
    margin-bottom: 10px;
    font-size: 18px;
    line-height: 1.5;
+ }
+
+ .tipo{
+    background-color: #e6e6e6;
+    border-radius: 5px;
+    font-size: 15px !important;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+ }
+
+ .divTipo{
+    margin-bottom: 20px;
+    margin-top: 20px;
  }
 
  .filter-input {
@@ -42,37 +64,89 @@
 
  .filter-input select {
    font-size: 18px;
-   padding: 5px 10px;
+   padding-top: 5px;
+   padding-bottom: 5px;
    border-radius: 5px;
    border: none;
    background-color: #fff;
    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+   width: 100%;
  }
 
- .divProducto input[type="radio"] {
-   display: none;
+ .divProducto label{
+    font-width: bold;
+    font-size: 18px;
  }
 
- .divProducto input[type="radio"] + label {
-   display: inline-block;
-   margin-right: 10px;
-   font-size: 18px;
-   cursor: pointer;
-   padding: 5px 10px;
-   border-radius: 5px;
-   border: none;
-   background-color: #fff;
-   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+ .precio{
+    font-weight: bold;
+    font-size: 23px;
+    color: #454546;
+ }
+
+.radio-container {
+  display: flex;
+}
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.radio__button {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+  position: relative;
+}
+
+.radio__button::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #555;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: all 0.2s ease-in-out;
+}
+
+.radio__text {
+  font-size: 16px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + .radio__button::after {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.medida{
+    margin-left: 2px;
+}
+
+
+ .fontBold{
+    font-weight: bold;
  }
 
  .btComprar {
    background-color: #28a745;
    color: #fff;
    border: none;
-   padding: 10px 20px;
+   padding: 10px 100px;
    border-radius: 5px;
    font-size: 18px;
    cursor: pointer;
+   margin-top: 20px;
+   width: 100%;
  }
 
  .btComprar:hover {
