@@ -19,13 +19,15 @@
             <img src="/source/index/logo.png" alt="Logo">
         </div>
         <div class="search-bar">
-            <form onsubmit="search(); return false;">
-                <input type="text" placeholder="Buscar...">
-                <button type="submit"><img src="/source/index/lupa.png"  height="30px" width="auto"></button>
+            <form th:action="@{/productos/search}">
+                <input id="formulario" type="text" placeholder="Buscar..." name="filter">
+                <button id="btSearch" type="submit"><img src="/source/index/lupa.png"  height="30px" width="auto"></button>
             </form>
         </div>
         <div class="nav-buttons">
-            <a href="#"><img src="/source/index/cesta.png" alt="Boton cesta"></a>
+            <form method="post" th:action="@{/cesta}">
+                <button type="submit"><img src="/source/index/cesta.png" alt="Boton cesta"></button>
+            </form>
             <a href="#"><img src="/source/index/perfil.png" alt="Boton perfil"></a>
         </div>
     </nav>
@@ -36,6 +38,7 @@
         <a th:href="@{/carbos}">Carbohidratos</a>
         <a th:href="@{/creatinas}">Creatina</a>
         <a th:href="@{/vitaminas}">Vitaminas</a>
+        <a th:href="@{/aminoacidos}">Aminoacidos</a>
         <a th:href="@{/barritas}">Barritas</a>
         <a th:href="@{/otros}">Otros</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -54,13 +57,13 @@
         <h3 class="filter-heading">Filtros</h3>
         <ul class="filter-list">
             <li>
-                <label for="nombre">Proteinas</label>
+                <label for="nombre">Nombre</label>
                 <div class="filter-input">
                     <select id="nombre">
                         <option value="">Seleccione...</option>
-                        <option value="whey">WheyProtein</option>
-                        <option value="isolate">Isolate</option>
-                        <option value="hidrolizada">Hidrolizada</option>
+                        <option value="vino">Whey Protein</option>
+                        <option value="cerveza">Isolate Protein</option>
+                        <option value="licor">Pee Protein</option>
                     </select>
                 </div>
             </li>
@@ -69,9 +72,9 @@
                 <div class="filter-input">
                     <select id="type">
                         <option value="">Seleccione...</option>
-                        <option value="vino">Vino</option>
-                        <option value="cerveza">Cerveza</option>
-                        <option value="licor">Licor</option>
+                        <option value="vino">Isolatada</option>
+                        <option value="cerveza">Whey</option>
+                        <option value="licor">Hidrolizada</option>
                     </select>
                 </div>
             </li>
@@ -80,9 +83,9 @@
                 <div class="filter-input">
                     <select id="flavour">
                         <option value="">Seleccione...</option>
-                        <option value="dulce">Dulce</option>
-                        <option value="amargo">Amargo</option>
-                        <option value="acido">Ácido</option>
+                        <option value="dulce">Chocolate</option>
+                        <option value="amargo">Vainilla</option>
+                        <option value="acido">Arandano</option>
                     </select>
                 </div>
             </li>
@@ -91,9 +94,9 @@
                 <div class="filter-input">
                     <select id="volume">
                         <option value="">Seleccione...</option>
-                        <option value="750ml">750ml</option>
-                        <option value="500ml">500ml</option>
-                        <option value="330ml">330ml</option>
+                        <option value="750ml">0.5Kg</option>
+                        <option value="500ml">1Kg</option>
+                        <option value="330ml">2Kg</option>
                     </select>
                 </div>
             </li>
@@ -120,36 +123,36 @@
                 <label for="name">Nombre</label>
                 <select id="name">
                     <option value="">Seleccione...</option>
-                    <option value="vino">Vino</option>
-                    <option value="cerveza">Cerveza</option>
-                    <option value="licor">Licor</option>
+                    <option value="vino">Whey Protein</option>
+                    <option value="cerveza">Isolate Protein</option>
+                    <option value="licor">Pee Protein</option>
                 </select>
             </li>
             <li>
                 <label for="tipo">Tipo</label>
                 <select id="tipo">
                     <option value="">Seleccione...</option>
-                    <option value="vino">Vino</option>
-                    <option value="cerveza">Cerveza</option>
-                    <option value="licor">Licor</option>
+                    <option value="vino">Isolatada</option>
+                    <option value="cerveza">Whey</option>
+                    <option value="licor">Hidrolizada</option>
                 </select>
             </li>
             <li>
                 <label for="sabor">Sabor</label>
                 <select id="sabor">
                     <option value="">Seleccione...</option>
-                    <option value="dulce">Dulce</option>
-                    <option value="amargo">Amargo</option>
-                    <option value="acido">Ácido</option>
+                    <option value="dulce">Chocolate</option>
+                    <option value="amargo">Vainilla</option>
+                    <option value="acido">Arandano</option>
                 </select>
             </li>
             <li>
                 <label for="volumen">Volumen</label>
                 <select id="volumen">
                     <option value="">Seleccione...</option>
-                    <option value="750ml">750ml</option>
-                    <option value="500ml">500ml</option>
-                    <option value="330ml">330ml</option>
+                    <option value="750ml">0.5Kg</option>
+                    <option value="500ml">1Kg</option>
+                    <option value="330ml">2Kg</option>
                 </select>
             </li>
             <li>

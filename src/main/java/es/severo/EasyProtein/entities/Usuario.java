@@ -21,8 +21,11 @@ public class Usuario {
     @Column(nullable = false, unique = true, name = "usuario")
     private String username;
 
-    @Column(nullable = false, name = "contraseña")
+    @Column(nullable = false, name = "`contraseña`")
     private String password;
+
+    @OneToOne(mappedBy = "usuario")
+    private Cesta cesta;
 
     public Usuario(String username, String password) {
         this.username = username;

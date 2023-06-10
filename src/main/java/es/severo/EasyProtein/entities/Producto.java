@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -23,6 +24,27 @@ public class Producto {
 
     @ManyToMany(mappedBy = "productos")
     private List<Cesta> cestas;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<Proteina> proteinas;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<Creatina> creatinas;
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
 
 

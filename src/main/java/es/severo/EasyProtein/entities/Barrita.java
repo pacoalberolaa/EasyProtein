@@ -22,8 +22,14 @@ public class Barrita {
     private String nombre;
     private String marca;
     private Double precio;
-    private String sabores;
+    private String sabor1;
+    private String sabor2;
+    private String sabor3;
     private String descripcion;
+    private String contenido1;
+    private String contenido2;
+    private String contenido3;
+    @Column(name = "imagen_url")
     private String imagenUrl;
 
     @JsonIgnore

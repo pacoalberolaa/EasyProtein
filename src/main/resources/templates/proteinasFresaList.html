@@ -19,13 +19,15 @@
             <img src="/source/index/logo.png" alt="Logo">
         </div>
         <div class="search-bar">
-            <form onsubmit="search(); return false;">
-                <input type="text" placeholder="Buscar...">
-                <button type="submit"><img src="/source/index/lupa.png"  height="30px" width="auto"></button>
+            <form th:action="@{/productos/search}">
+                <input id="formulario" type="text" placeholder="Buscar..." name="filter">
+                <button id="btSearch" type="submit"><img src="/source/index/lupa.png"  height="30px" width="auto"></button>
             </form>
         </div>
         <div class="nav-buttons">
-            <a href="#"><img src="/source/index/cesta.png" alt="Boton cesta"></a>
+            <form method="post" th:action="@{/cesta}">
+                <button type="submit"><img src="/source/index/cesta.png" alt="Boton cesta"></button>
+            </form>
             <a href="#"><img src="/source/index/perfil.png" alt="Boton perfil"></a>
         </div>
     </nav>
@@ -36,6 +38,7 @@
         <a th:href="@{/carbos}">Carbohidratos</a>
         <a th:href="@{/creatinas}">Creatina</a>
         <a th:href="@{/vitaminas}">Vitaminas</a>
+        <a th:href="@{/aminoacidos}">Aminoacidos</a>
         <a th:href="@{/barritas}">Barritas</a>
         <a th:href="@{/otros}">Otros</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -45,13 +48,13 @@
 
     <div class="titulo">
         <img id="openNav" src="/source/index/hamburguer_button.png">
-        <h1>Batidos de Proteina en Polvo</h1>
+        <h1>Batidos de Proteina en Polvo (Sabor Fresa)</h1>
     </div>
 
 </div>
 <!--    Barra lateral desplegable-->
 <div id="myNav" class="sidenav">
-    <h3 class="filter-heading">Filtros</h3>
+    <h3 class="filter-heading">Nombre</h3>
     <ul class="filter-list">
         <li>
             <label for="nombre">Proteinas</label>
@@ -170,7 +173,7 @@
     <a th:href="@{/proteinas/tipo/{tipo}(tipoProteina='vegana')}"><button>Proteina Vegana</button></a>
     <a th:href="@{/proteinas/sabor/{sabor}(saborProteina='chocolate')}"><button>Proteina sabor Chocolate</button></a>
     <a th:href="@{/proteinas/sabor/{sabor}(saborProteina='vainilla')}"><button>Proteina sabor Vainilla</button></a>
-    <a href="#"><button>Proteina sabor Fresa</button></a>
+    <a href="#"><button id="button">Proteina sabor Fresa</button></a>
     <a th:href="@{/proteinas/sabor/{sabor}(saborProteina='cafe')}"><button>Proteina sabor Cafe</button></a>
     <a th:href="@{/proteinas/marca/{marca}(marcaProteina='hsn')}"><button>Proteina de Hsn</button></a>
     <a th:href="@{/proteinas/marca/{marca}(marcaProteina='MyProtein')}"><button>Proteina de MyProtein</button></a>
@@ -230,6 +233,20 @@ document.addEventListener("click", function(event) {
         }
    }
 });
+
+<!--Cambio de color de botones dependiendo de la pagina en la que nos encontremos-->
+
+<!-- Obtenemos la URL actual-->
+var currentUrl = window.location.href;
+
+<!-- Comprobamos si la URL contiene la ruta "/proteinas/tipo/whey"-->
+if (currentUrl.includes("/proteinas/sabor/%7Bsabor%7D?saborProteina=fresa")) {
+<!--   Si la URL contiene la ruta "/proteinas/tipo/whey", cambiamos el color del botón correspondiente-->
+    var wheyButton = document.getElementById("button");
+    wheyButton.style.backgroundColor = "#008858";
+    wheyButton.style.color = "white";
+    wheyButton.style.pointer = "default";
+}
 
 
 

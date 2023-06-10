@@ -11,23 +11,42 @@ function reedirigirProtRecomendada() {
   window.location.href = 'http://localhost:8081/proteina/1';
 }
 
+function reedirigirCreatinaRecomendado() {
+  window.location.href = 'http://localhost:8081/creatinas';
+}
 
-//
-//function search() {
-//  // Obtener el valor del input de búsqueda
-//  var input = document.querySelector('.search-bar input');
-//  var searchText = input.value;
-//
-//  // Obtener todos los elementos divProteins
-//  var proteins = document.querySelectorAll('.divProteins');
-//
-//  // Ocultar todos los elementos divProteins que no coincidan con el texto de búsqueda
-//  for (var i = 0; i < proteins.length; i++) {
-//    var proteinName = proteins[i].querySelector('p:first-child').innerText;
-//    if (proteinName.toLowerCase().includes(searchText.toLowerCase())) {
-//      proteins[i].style.display = 'block';
-//    } else {
-//      proteins[i].style.display = 'none';
-//    }
-//  }
-//}
+function reedirigirGlutaminaRecomendado() {
+  window.location.href = 'http://localhost:8081/aminoacidos';
+}
+
+function reedirigirMultVitRecomendado() {
+  window.location.href = 'http://localhost:8081/vitaminas';
+}
+
+function reedirigirProdEstrella() {
+  window.location.href = 'http://localhost:8081/proteina/3';
+}
+
+
+function obtenerSaborSeleccionado() {
+   var selectElement = document.getElementById("sabores");
+   var saborSeleccionado = selectElement.options[selectElement.selectedIndex].text;
+
+   var radioButtons = document.getElementsByName("option");
+   var cantSeleccionada;
+
+   var sabor = document.getElementById("sabor");
+   var cantidad = document.getElementById("cantidad");
+
+   for (var i = 0; i < radioButtons.length; i++) {
+       if (radioButtons[i].checked) {
+            var spanElement = radioButtons[i].nextElementSibling.nextElementSibling;
+            cantSeleccionada = spanElement.textContent;
+       break;
+       }
+   }
+
+   sabor.textContent = saborSeleccionado;
+   cantidad.textContent = cantSeleccionada;
+
+}

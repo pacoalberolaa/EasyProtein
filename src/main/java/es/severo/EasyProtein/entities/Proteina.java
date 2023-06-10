@@ -32,9 +32,6 @@ public class Proteina {
     private String descripcion;
     @Column(name = "imagen_url")
     private String imagenUrl;
-    @Column(name = "producto_estrella")
-    private boolean productoEstrella;
-
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "Productos_id")

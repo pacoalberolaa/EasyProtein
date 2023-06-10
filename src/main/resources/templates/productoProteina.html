@@ -18,13 +18,15 @@
             <img src="/source/index/logo.png" alt="Logo">
         </div>
         <div class="search-bar">
-            <form onsubmit="search(); return false;">
-                <input type="text" placeholder="Buscar...">
-                <button type="submit"><img src="/source/index/lupa.png"  height="30px" width="auto"></button>
+            <form th:action="@{/productos/search}">
+                <input id="formulario" type="text" placeholder="Buscar..." name="filter">
+                <button id="btSearch" type="submit"><img src="/source/index/lupa.png"  height="30px" width="auto"></button>
             </form>
         </div>
         <div class="nav-buttons">
-            <a href="#"><img src="/source/index/cesta.png" alt="Boton cesta"></a>
+            <form method="post" th:action="@{/cesta}">
+                <button type="submit"><img src="/source/index/cesta.png" alt="Boton cesta"></button>
+            </form>
             <a href="#"><img src="/source/index/perfil.png" alt="Boton perfil"></a>
         </div>
     </nav>
@@ -35,6 +37,7 @@
         <a th:href="@{/carbos}">Carbohidratos</a>
         <a th:href="@{/creatinas}">Creatina</a>
         <a th:href="@{/vitaminas}">Vitaminas</a>
+        <a th:href="@{/aminoacidos}">Aminoacidos</a>
         <a th:href="@{/barritas}">Barritas</a>
         <a th:href="@{/otros}">Otros</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -44,100 +47,64 @@
 
     <img src="/source/index/fondoProducto.png" alt="portada" class="imgPortada">
 
-    <div class="divProducto" th:object="${proteina}">
-        <div class="producto-container">
-            <div class="producto-imagen">
-                <img th:src="${proteina.imagenUrl}">
-            </div>
-            <div class="producto-detalles">
-                <h3 th:text="${proteina.nombre}"></h3>
-                <span th:text="${proteina.descripcion}"></span>
-                <div class="divTipo">
-                    <span th:text="${proteina.tipo}" class="tipo"></span>
+
+    <form method="post" th:object="${proteina}" th:action="@{/cesta}">
+        <input type="hidden" name="id" th:value="${proteina.id}">
+        <div class="divProducto">
+            <div class="producto-container">
+                <div class="producto-imagen">
+                    <img th:src="${proteina.imagenUrl}">
                 </div>
-                <span class="precio" th:text="${proteina.precio}"></span>
-                <span class="precio">€</span>
-                <div class="filter-input">
-                    <p for="sabores" class="fontBold">Sabores:</p>
-                    <select id="sabores">
-                        <option value="">Sin Sabor</option>
-                        <option value="sabor1" th:text="${proteina.sabor1}"></option>
-                        <option value="sabor2" th:text="${proteina.sabor2}"></option>
-                        <option value="sabor3" th:text="${proteina.sabor3}"></option>
-                    </select>
-                </div>
-                <p class="fontBold">Cantidad:</p>
+                <div class="producto-detalles">
+                    <h3 th:text="${proteina.nombre}"></h3>
+                    <span th:text="${proteina.descripcion}"></span>
+                    <div class="divTipo">
+                        <span th:text="${proteina.tipo}" class="tipo"></span>
+                    </div>
+                    <span class="precio" th:text="${proteina.precio}"></span>
+                    <span class="precio">€</span>
+                    <div class="filter-input">
+                        <p for="sabores" class="fontBold">Sabores:</p>
+                        <select id="sabores">
+                            <option value="">Sin Sabor</option>
+                            <option value="sabor1" th:text="${proteina.sabor1}"></option>
+                            <option value="sabor2" th:text="${proteina.sabor2}"></option>
+                            <option value="sabor3" th:text="${proteina.sabor3}"></option>
+                        </select>
+                    </div>
+                    <p class="fontBold">Cantidad:</p>
 
 
-                <div class="radio-container">
-                    <label class="radio">
-                        <input type="radio" name="option" value="opcion1" checked>
-                        <div class="radio__button"></div>
-                        <span class="radio__text" th:text="${proteina.cantidad1}"></span>
-                        <span class="medida">g</span>
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="option" value="opcion2">
-                        <div class="radio__button"></div>
-                        <span class="radio__text" th:text="${proteina.cantidad2}"></span>
-                        <span class="medida">kg</span>
-                    </label>
-                    <label class="radio">
-                        <input type="radio" name="option" value="opcion3">
-                        <div class="radio__button"></div>
-                        <span class="radio__text" th:text="${proteina.cantidad3}"></span>
-                        <span class="medida">kg</span>
-                    </label>
-                </div>
+                    <div class="radio-container">
+                        <label class="radio">
+                            <input type="radio" name="option" id="sabor1" value="opcion1" checked>
+                            <div class="radio__button"></div>
+                            <span class="radio__text" th:text="${proteina.cantidad1}"></span>
+                            <span class="medida">g</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="option" id="sabor2" value="opcion2">
+                            <div class="radio__button"></div>
+                            <span class="radio__text" th:text="${proteina.cantidad2}"></span>
+                            <span class="medida">kg</span>
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="option"  id="sabor3" value="opcion3">
+                            <div class="radio__button"></div>
+                            <span class="radio__text" th:text="${proteina.cantidad3}"></span>
+                            <span class="medida">kg</span>
+                        </label>
+                    </div>
 
-                <br>
-                <button class="btComprar">Comprar</button>
+                    <br>
+                    <button class="btComprar" type="submit" onclick="obtenerSaborSeleccionado()">Comprar</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
-
-
-    <!--    <div class="datos" th:object="${t}">-->
-<!--        <h3 th:text="${t.nombre}"></h3>-->
-<!--        <p class="titular">Platos disponibles:</p>-->
-<!--        <div class="platos" th:each="c:${t.platos}">-->
-<!--            <div>-->
-<!--                <p class="titulo">Nombre:</p>-->
-<!--                <p th:text="${c.nombre}"></p>-->
-<!--                <p class="titulo separador1">Ingredientes:</p>-->
-<!--                <p th:text="${c.ingredientes}"></p>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <p class="titulo">Descripcion:</p>-->
-<!--                <p th:text="${c.descripcion}"></p>-->
-<!--                <p class="titulo separador2">Precio:</p>-->
-<!--                <p th:text="${c.precio}"></p><span>€</span>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <button onclick="Alerta()" type="submit" class="btn btn-primary">Pedir</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <br><br>-->
-
-<!--        <p class="titular">Bebidas disponibles:</p>-->
-<!--        <div class="platos" th:each="b:${t.bebidas}">-->
-<!--            <div>-->
-<!--                <p class="titulo">Nombre:</p>-->
-<!--                <p th:text="${b.nombre}"></p>-->
-<!--                <p class="titulo separador2">Precio:</p>-->
-<!--                <p th:text="${b.precio}"></p><span>€</span>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <p class="titulo">Descripcion:</p>-->
-<!--                <p th:text="${b.descripcion}"></p>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <button onclick="Alerta()" type="submit" class="btn btn-primary">Pedir</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
+    <p id="sabor"></p>
+    <p id="cantidad"></p>
 
 </body>
 <footer>

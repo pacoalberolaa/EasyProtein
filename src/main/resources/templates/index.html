@@ -18,16 +18,19 @@
             <img src="/source/index/logo.png" alt="Logo">
         </div>
         <div class="search-bar">
-            <form>
-                <input type="text" placeholder="Buscar...">
-                <button type="submit"><img src="/source/index/lupa.png"  height="30px" width="auto"></button>
+            <form th:action="@{/productos/search}">
+                <input id="formulario" type="text" placeholder="Buscar..." name="filter">
+                <button id="btSearch" type="submit"><img src="/source/index/lupa.png"  height="30px" width="auto"></button>
             </form>
         </div>
+
         <div class="nav-buttons">
-            <a href="#"><img src="/source/index/cesta.png" alt="Boton cesta"></a>
+            <form method="post" th:action="@{/cesta}">
+                <button type="submit"><img src="/source/index/cesta.png" alt="Boton cesta"></button>
+            </form>
+
             <a th:href="@{login}" th:if="${usuario}" th:text="${usuario}"></a>
             <a th:href="@{login}" th:unless="${usuario}"><img src="/source/index/perfil.png" alt="Boton perfil"></a>
-
         </div>
     </nav>
 
@@ -37,6 +40,7 @@
         <a th:href="@{/carbos}">Carbohidratos</a>
         <a th:href="@{/creatinas}">Creatina</a>
         <a th:href="@{/vitaminas}">Vitaminas</a>
+        <a th:href="@{/aminoacidos}">Aminoacidos</a>
         <a th:href="@{/barritas}">Barritas</a>
         <a th:href="@{/otros}">Otros</a>
         <a href="javascript:void(0);" class="icon" onclick="myFunction()">
@@ -88,19 +92,19 @@
         <h2 class="titulo">PRODUCTOS RECOMENDADOS</h2>
             <div class="divRecomendado">
                 <div class="divRecomendadoProducto" onclick="reedirigirCreatinaRecomendado()">
-                    <img src="/source/index/recomendados/creatina Hsn.png" alt="creatina">
+                    <img src="/source/index/recomendados/creatina_Hsn.png" alt="creatina">
                     <p class="nombre">Creatina Monohidratada</p>
                     <p class="marca">Marca Hsn</p>
                     <p class="precio">Desde 25€</p>
                 </div>
                 <div class="divRecomendadoProducto" onclick="reedirigirGlutaminaRecomendado()">
-                    <img src="/source/index/recomendados/glutamina Amix.png" alt="glutamina">
+                    <img src="/source/index/recomendados/glutamina_Amix.png" alt="glutamina">
                     <p class="nombre" >Glutamina + BCAA</p>
                     <p class="marca">Marca Amix</p>
                     <p class="precio">Desde 20€</p>
                 </div>
                 <div class="divRecomendadoProducto" onclick="reedirigirMultVitRecomendado()">
-                    <img src="/source/index/recomendados/multivitaminico Hsn.png" alt="multivitaminico">
+                    <img src="/source/index/recomendados/multivitaminico_Hsn.png" alt="multivitaminico">
                     <p class="nombre">Multivitaminico</p>
                     <p class="marca">Marca Hsn</p>
                     <p class="precio">Desde 2.50€</p>
@@ -118,7 +122,7 @@
     <div class="prodEstrella">
         <a>
             <h2 class="titulo">PRODUCTO ESTRELLA</h2>
-            <img src="/source/index/clear Whey.jpg" width="96%">
+            <img src="/source/index/clearWhey_MP.jpg" width="96%" onclick="reedirigirProdEstrella()">
         </a>
     </div>
 
@@ -169,7 +173,7 @@
             </div>
         </div>
     </div>
-    <!--<img src="../img/preFooter.png" width="96%" height="70%">-->
+
 </body>
 
 <footer>
@@ -186,9 +190,9 @@
             <div class="footer-social">
                 <h3>Síguenos en Redes Sociales</h3>
                 <ul>
-                    <li><img src="source/index/logoFacebook.png" alt="logo Facebook" width="5%"></i><a>Facebook</a></li>
-                    <li><img src="source/index/logoTwitter.png" alt="logo Twitter" width="5%"></i> <a>Twitter</a></li>
-                    <li><img src="source/index/logoInsta.png" alt="logo Instagram" width="5%"></i> <a>Instagram</a></li>
+                    <li><img src="/source/index/logoFacebook.png" alt="logo Facebook" width="5%"><a>Facebook</a></li>
+                    <li><img src="/source/index/logoTwitter.png" alt="logo Twitter" width="5%"> <a>Twitter</a></li>
+                    <li><img src="/source/index/logoInsta.png" alt="logo Instagram" width="5%"><a>Instagram</a></li>
                 </ul>
             </div>
         </div>

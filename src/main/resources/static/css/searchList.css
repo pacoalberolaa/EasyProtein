@@ -1,0 +1,254 @@
+footer{
+    margin-top: 20% !important;
+}
+
+h1{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+}
+
+/*Barra lateral desplegable */
+.sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.filter-heading {
+    margin-top: 0;
+    color: #f1f1f1;
+    padding: 20px 8px;
+    text-align: center;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.filter-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    font-size: 20px;
+    color: #f1f1f1;
+}
+
+.filter-list li {
+    margin: 20px 8px;
+}
+
+.filter-list label {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.filter-list input,
+.filter-list select {
+    padding: 5px;
+    margin-right: 10px;
+    font-size: 20px;
+    width: 100%;
+}
+
+.btBuscar {
+    background-color: #008858;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 8px;
+}
+
+.btBuscar:hover {
+    background-color: #3e8e41;
+}
+
+/* Estilos del botón de abrir la barra lateral */
+#openNav {
+    display: none;
+}
+
+
+#openNav img{
+    width: 100%;
+}
+
+.titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/*Estilos barra filtros */
+.filter-input {
+    display: flex;
+    align-items: center;
+}
+
+.filter-input input {
+    padding: 5px;
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.filter-input button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.filter-input button:hover {
+    background-color: #3e8e41;
+}
+
+.sidebar {
+  background-color: #f2f2f2;
+  width: 200px;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+  float: left; /* añadimos esta línea */
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+}
+
+.sidebar label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.sidebar input[type="text"],
+.sidebar select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+
+.btFiltrar{
+    background-color: #008858;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.productos{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+}
+
+.productos img{
+    width: 50%;
+}
+
+.precio{
+    font-weight: bold;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    }
+
+.nombre{
+    font-size: 25px;
+}
+
+.divProductos{
+  margin-left: 5%;
+  margin-right: 5%;
+  text-align: center;
+  border: orange 2px solid;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px gray;
+}
+
+.productos a{
+  text-decoration: none;
+  color: black;
+}
+
+.divProductos:hover{
+  box-shadow: 10px 10px 25px black;
+  border: #008858 2px solid;
+  cursor: pointer;
+}
+
+
+
+/*Estilos de media pantalla */
+@media (max-width: 768px) {
+    #openNav {
+        display: block;
+        font-size: 20px;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+        width: 7%;
+    }
+
+    .titulo{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .productos{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-gap: 1rem;
+    }
+
+    .sidebar{
+        display: none;
+    }
+
+    .buttons{
+        display: none;
+    }
+}

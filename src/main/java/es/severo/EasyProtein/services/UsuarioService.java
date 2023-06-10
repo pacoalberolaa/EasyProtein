@@ -19,8 +19,8 @@ public class UsuarioService {
     }
 
 
-    public void createUsuario(Usuario usuario) {
-        readerRepository.save(usuario);
+    public Usuario createUsuario(Usuario usuario) {
+        return readerRepository.save(usuario);
     }
 
 

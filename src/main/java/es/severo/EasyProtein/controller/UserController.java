@@ -4,6 +4,7 @@ import es.severo.EasyProtein.entities.Usuario;
 import es.severo.EasyProtein.services.UsuarioService;
 import es.severo.EasyProtein.util.EncryptionUtil;
 import es.severo.EasyProtein.util.Login;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,25 +20,37 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(Usuario usuario, Model model, RedirectAttributes redirectAttributes) {
-        if (usuarioService.getUsuario(usuario.getUsername(), EncryptionUtil.encrypt(usuario.getPassword())) == null) {
-//            model.addAttribute(WebUtil.ERROR_ATTRIBUTE, WebUtil.MSG_CREDENTIALS);
+    public String login(Usuario usuario, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        Usuario user = usuarioService.getUsuario(usuario.getUsername(), EncryptionUtil.encrypt(usuario.getPassword()));
+        if (user == null) {
+            model.addAttribute("error", "Usuario o contraseña incorrectos");
             return "login";
         } else {
             redirectAttributes.addFlashAttribute("usuario", usuario.getUsername());
+            Usuario sessionUser = (Usuario) request.getSession().getAttribute("user");
+            if (sessionUser == null) {
+                request.getSession().setAttribute("user", user);
+            }
             return "redirect:/";
         }
     }
 
+
     @PostMapping("/registrarse")
-    public String registro(Login usuario, Model model, RedirectAttributes redirectAttributes) {
+    public String registro(Login usuario, Model model, RedirectAttributes redirectAttributes, HttpServletRequest request) {
         if (usuarioService.getUsuario(usuario.getUsername(), EncryptionUtil.encrypt(usuario.getPassword())) != null) {
-//            model.addAttribute(WebUtil.ERROR_ATTRIBUTE, WebUtil.MSG_CREDENTIALS);
             return "registrarse";
         } else {
             redirectAttributes.addFlashAttribute("usuario", usuario.getUsername());
-            usuarioService.createUsuario(new Usuario(usuario.getUsername(), EncryptionUtil.encrypt(usuario.getPassword())));
+            Usuario user = usuarioService.createUsuario(new Usuario(usuario.getUsername(), EncryptionUtil.encrypt(usuario.getPassword())));
+            redirectAttributes.addFlashAttribute("success", "Usuario creado correctamente");
+
+            Usuario sessionUser = (Usuario) request.getSession().getAttribute("user");
+            if (sessionUser == null) {
+                request.getSession().setAttribute("user", user);
+            }
             return "redirect:/";
         }
     }
+
 }

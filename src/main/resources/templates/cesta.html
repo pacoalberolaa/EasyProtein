@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>EasyProtein</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="/css/cesta.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="icon" type="image/jpg" href="/source/index/favicon-32x32.png"/>
+    <script src="/js/functions.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="/source/index/logo.png" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <form th:action="@{/productos/search}">
+                <input id="formulario" type="text" placeholder="Buscar..." name="filter">
+                <button id="btSearch" type="submit"><img src="/source/index/lupa.png"  height="30px" width="auto"></button>
+            </form>
+        </div>
+
+        <div class="nav-buttons">
+            <form method="post">
+                <button><img src="/source/index/cesta.png" alt="Boton cesta"></button>
+            </form>
+            <a th:href="@{login}" th:if="${usuario}" th:text="${usuario}"></a>
+            <a th:href="@{login}" th:unless="${usuario}"><img src="/source/index/perfil.png" alt="Boton perfil"></a>
+
+        </div>
+    </nav>
+
+    <div class="topnav" id="myTopnav">
+        <a th:href="@{/}">Inicio</a>
+        <a th:href="@{/proteinas}">Proteinas</a>
+        <a th:href="@{/carbos}">Carbohidratos</a>
+        <a th:href="@{/creatinas}">Creatina</a>
+        <a th:href="@{/vitaminas}">Vitaminas</a>
+        <a th:href="@{/aminoacidos}">Aminoacidos</a>
+        <a th:href="@{/barritas}">Barritas</a>
+        <a th:href="@{/otros}">Otros</a>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i>
+        </a>
+    </div>
+
+    <h1>Carrito de la Compra</h1>
+
+    <div id="sumario">
+        <h3>Sumario</h3>
+        <div class="total">
+            <span>Subtotal</span>
+            <span><span id="total"></span>€</span>
+            <span>Envio</span>
+            <span><span>2.50</span>€</span>
+        </div>
+
+        <div class="total total2">
+            <span>Total</span>
+            <span><span id="totalPlus">0</span>€</span>
+        </div>
+        <a th:href="@{/cesta/{id}/delete(id=${cesta.id})}">
+            <button type="submit" onclick="enviarPedido()">Finalizar comprar</button>
+        </a>
+    </div>
+    <div id="contenido">
+    <div class="divProductos" th:if="${cesta}" th:each="producto:${cesta.productos}" >
+        <div  th:each="proteina :${producto.proteinas}" class="divProd">
+            <div>
+                <div class="imgProd">
+                    <img th:src="${proteina.imagenUrl}" alt="Imagen proteina">
+                </div>
+                <div class="contenido">
+                    <div class="delete">
+                        <form th:action="@{/cesta/{id}/delete/{idProducto}(id=${cesta.id}, idProducto=${producto.id})}"
+                              method="post" id="deleteForm">
+                            <input type="hidden" name="_method" value="delete">
+                            <button type="submit" class="delete-button">X</button>
+                        </form>
+                    </div>
+                    <div class="atributos">
+                        <p class="nombre" th:text="${proteina.nombre}"></p>
+                        <p>Sabor</p>
+                        <p>Cantidad</p>
+                    </div>
+                    <div class="cantidad">
+                        <button id="sub">-</button>
+                        <span id="number">1</span>
+                        <button id="add" onclick="sumarValores()">+</button>
+                    </div>
+                    <div class="precio">
+                        <p>Total: <span class="price" contenteditable th:text="${proteina.precio}"></span>€</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</body>
+
+<script>
+
+const addButtonList = document.querySelectorAll('.divProd button#add');
+const subButtonList = document.querySelectorAll('.divProd button#sub');
+const numberSpanList = document.querySelectorAll('.divProd span#number');
+const priceSpansList = document.querySelectorAll('.divProd span.price');
+const totalSpanList = document.querySelectorAll('.divProd #total span');
+
+// Recorre todos los conjuntos de elementos para asociar los eventos
+for (let i = 0; i < addButtonList.length; i++) {
+  const addButton = addButtonList[i];
+  const subButton = subButtonList[i];
+  const numberSpan = numberSpanList[i];
+  const priceSpans = priceSpansList[i];
+  const totalSpan = totalSpanList[i];
+
+  // Convierte el precio inicial en un número
+  const initialPrice = parseFloat(priceSpans.innerText);
+
+  // Agrega un listener al botón "+" para incrementar el número
+  addButton.addEventListener('click', () => {
+    // Obtén el valor actual del número
+    let number = parseFloat(numberSpan.innerText);
+    // Incrementa el número en 1
+    number += 1;
+    // Actualiza el contenido del span con el nuevo número
+    numberSpan.innerText = number;
+
+    // Calcula el nuevo precio total
+    const totalPrice = initialPrice * number;
+    priceSpans.innerText = totalPrice.toFixed(2);
+
+    // Actualiza el total general llamando a la función sumarValores
+    sumarValores();
+  });
+
+  // Agrega un listener al botón "-" para decrementar el número
+  subButton.addEventListener('click', () => {
+    // Obtén el valor actual del número
+    let number = parseFloat(numberSpan.innerText);
+    // Verifica si el número es mayor que 1 antes de restar
+    if (number > 1) {
+      // Decrementa el número en 1
+      number -= 1;
+      // Actualiza el contenido del span con el nuevo número
+      numberSpan.innerText = number;
+
+      // Calcula el nuevo precio total
+      const totalPrice = initialPrice * number;
+      priceSpans.innerText = totalPrice.toFixed(2);
+
+      // Actualiza el total general llamando a la función sumarValores
+      sumarValores();
+    }
+  });
+}
+
+const totalSpan = document.getElementById('total');
+const totalPlusSpan = document.getElementById('totalPlus');
+
+// Función para sumar los valores de los elementos
+function sumarValores() {
+  let total = 0;
+
+  // Recorre los elementos con la clase 'price'
+  for (let i = 0; i < priceSpansList.length; i++) {
+    // Obtiene el valor numérico del elemento y lo suma al total
+    const valor = parseFloat(priceSpansList[i].innerText);
+    total += isNaN(valor) ? 0 : valor;
+  }
+
+  // Actualiza el contenido del span total con la suma
+  totalSpan.innerText = total.toFixed(2);
+
+  const totalPlus = total + 2.50;
+  totalPlusSpan.innerText = totalPlus.toFixed(2);
+}
+
+// Llama a la función para calcular la suma inicialmente
+sumarValores();
+
+function enviarPedido() {
+    alert("Tu pedido ha sido enviado con éxito.");
+}
+
+ // Obtener los elementos div por su clase
+    var divs = document.getElementsByClassName("divProductos");
+    var sumario = document.getElementById("sumario");
+
+// Verificar si todos los elementos están vacíos
+    var todosVacios = true;
+
+// Recorrer la lista de elementos
+    for (var i = 0; i < divs.length; i++) {
+        var div = divs[i];
+
+    // Verificar si el contenido del div está vacío
+        if (div.innerHTML.trim() !== "") {
+            todosVacios = false;
+            break;
+        }
+    }
+
+// Verificar si todos los elementos están vacíos
+if (todosVacios) {
+    // Ocultar el div sumario
+    sumario.style.display = "none";
+} else {
+    // Mostrar el div sumario
+    sumario.style.display = "block";
+}
+
+   // Obtener los elementos div por su clase
+var divs = document.getElementsByClassName("divProductos");
+
+// Convertir la lista de elementos a un array para poder recorrerla
+var divsArray = Array.from(divs);
+
+// Recorrer la lista de elementos
+divsArray.forEach(function(div) {
+    // Verificar si el contenido del div está vacío
+    if (div.innerHTML.trim() === "") {
+        // Eliminar el div
+        div.remove();
+    }
+});
+
+
+
+  </script>
+
+</body>
+<footer>
+
+    <div class="container">
+        <div class="footer-column">
+            <div class="footer-logo">
+                <img src="/source/index/logo.png" alt="Logo de la empresa">
+            </div>
+            <div class="footer-about">
+                <h3>Sobre Nosotros</h3>
+                <p>Somos una empresa dedicada a la venta de suplementos alimenticios de alta calidad.</p>
+            </div>
+            <div class="footer-social">
+                <h3>Síguenos en Redes Sociales</h3>
+                <ul>
+                    <li><img src="/source/index/logoFacebook.png" alt="logo Facebook" width="5%"></i><a>Facebook</a></li>
+                    <li><img src="/source/index/logoTwitter.png" alt="logo Twitter" width="5%"></i> <a>Twitter</a></li>
+                    <li><img src="/source/index/logoInsta.png" alt="logo Instagram" width="5%"></i> <a>Instagram</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-column">
+            <div class="footer-links">
+                <h3>Enlaces Útiles</h3>
+                <ul>
+                    <li><a th:href="@{/}">Inicio</a></li>
+                    <li><a th:href="@{/Proteinas}">Proteinas</a></li>
+                    <li><a th:href="@{/Carbos}"></a>Carbohidratos</li>
+                    <li><a th:href="@{/Vitaminas}">Vitaminas</a></li>
+                    <li><a th:href="@{/Barritas}">Barritas</a></li>
+                    <li><a th:href="@{/Otros}">Otros</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-column">
+            <div class="footer-contact">
+                <h3>Contacto</h3>
+                <p>Dirección: Calle Falsa 123, Ciudad Ficticia</p>
+                <p>Teléfono: (123) 456-7890</p>
+                <p>Correo electrónico: info@suplementos.com</p>
+            </div>
+            <div class="footer-payment">
+                <h3>Formas de Pago</h3>
+                <img src="/source/index/MasterCard_Logo.png" alt="Logos de formas de pago" width="20%">
+            </div>
+        </div>
+    </div>
+    <div class="bottom-footer">
+        <div class="container">
+            <div class="bottom-footer-left">
+                <p>Derechos Reservados © 2023 Suplementos.com</p>
+            </div>
+            <div class="bottom-footer-right">
+                <ul>
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>

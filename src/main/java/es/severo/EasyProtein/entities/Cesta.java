@@ -3,22 +3,24 @@ package es.severo.EasyProtein.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 
+@Table(name = "Cesta")
+@NoArgsConstructor
 public class Cesta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "Cesta_has_Productos",
             joinColumns = @JoinColumn(name = "Cesta_id"),
@@ -26,6 +28,23 @@ public class Cesta {
 
     private List<Producto> productos;
 
+    @OneToOne
+    @JoinColumn(name = "Usuario_id")
+    private Usuario usuario;
 
 
+    public Cesta(Usuario usuario) {
+        this.productos = new ArrayList<>();
+        this.usuario = usuario;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

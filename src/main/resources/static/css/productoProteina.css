@@ -165,3 +165,32 @@ input[type="radio"]:checked + .radio__button::after {
 .producto-detalles {
   grid-column: 2 / 3;
 }
+
+@media (max-width: 768px) {
+    .divProducto {
+        flex-direction: column;
+        margin-top: -100px;
+    }
+    .divProducto img {
+        width: 50%;
+        margin-left: 25%;
+
+    }
+
+    .divProducto h3 {
+         text-align: center;
+    }
+    .producto-container {
+        grid-template-columns: 1fr;
+    }
+
+    .producto-imagen {
+        grid-column: 1 / 2;
+        margin-right: 0;
+
+    }
+
+    .producto-detalles {
+        grid-column: 1 / 2;
+    }
+}

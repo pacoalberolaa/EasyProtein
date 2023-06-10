@@ -21,8 +21,13 @@ public class Vitamina {
     private String nombre;
     private String marca;
     private Double precio;
-    private Double cantidad;
+    private Double cantidad1;
+    private Double cantidad2;
+    private Double cantidad3;
+    private String tipo;
     private String descripcion;
+    @Column(name = "imagen_url")
+    private String imagenUrl;
 
     @JsonIgnore
     @ManyToOne

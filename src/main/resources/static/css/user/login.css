@@ -88,3 +88,11 @@ button[type="submit"]:hover {
 .form-footer span {
   font-size: 14px;
 }
+
+.alert-success{
+    color: green;
+}
+
+.alert-danger{
+    color: red;
+}

@@ -20,7 +20,9 @@ public class Creatina {
     private String nombre;
     private String marca;
     private Double precio;
-    private Double cantidad;
+    private Double cantidad1;
+    private Double cantidad2;
+    private Double cantidad3;
     private boolean creapure;
     private String sabor1;
     private String sabor2;
@@ -28,6 +30,7 @@ public class Creatina {
     private String sabor4;
     private String sabor5;
     private String descripcion;
+    @Column(name = "imagen_url")
     private String imagenUrl;
 
     @JsonIgnore

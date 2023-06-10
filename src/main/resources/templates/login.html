@@ -7,6 +7,9 @@
 </head>
 <body>
 <form class="login-form" th:action="@{/login}" method="post">
+    <div th:if="${error}" class="alert alert-danger">
+        <p th:text="${error}"></p>
+    </div>
     <div class="form-flex">
         <img src="/source/index/logo.png" alt="Logo">
         <h2>Iniciar sesión</h2>
