@@ -26,7 +26,18 @@ public interface ProductosRepository extends JpaRepository<Producto, Long>{
     @Query(value = "SELECT p FROM Producto p" +
             "            LEFT JOIN Proteina pr ON p.id = pr.producto" +
             "            LEFT JOIN Creatina c ON p.id = c.producto" +
-            "            WHERE (pr.nombre LIKE (%:filter%)  OR pr.tipo LIKE (%:filter%) OR c.nombre LIKE (%:filter%))")
+            "            LEFT JOIN Carbohidrato ca ON p.id = ca.producto" +
+            "            LEFT JOIN Vitamina v ON p.id = v.producto" +
+            "            LEFT JOIN Barrita b ON p.id = b.producto" +
+            "            LEFT JOIN Aminoacido a ON p.id = a.producto" +
+            "            WHERE (pr.nombre LIKE (%:filter%)  OR pr.tipo LIKE (%:filter%) OR" +
+            "            c.nombre LIKE (%:filter%) OR c.creapure = true OR " +
+            "            ca.nombre LIKE (%:filter%) OR ca.tipo LIKE (%:filter%) OR" +
+            "            v.nombre LIKE (%:filter%) OR v.tipo LIKE (%:filter%) OR" +
+            "            b.nombre LIKE (%:filter%) OR" +
+            "            a.nombre LIKE (%:filter%) OR a.tipo LIKE (%:filter%) "+
+            ")")
+
     List<Producto> findProducto(@Param("filter") String filter);
 
     //añadir producto a la cesta

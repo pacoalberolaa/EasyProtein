@@ -31,6 +31,18 @@ public class Producto {
     @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
     private List<Creatina> creatinas;
 
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<Carbohidrato> carbohidratos;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<Vitamina> vitaminas;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<Barrita> barritas;
+
+    @OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+    private List<Aminoacido> aminoacidos;
+
     @Override
     public int hashCode() {
         return super.hashCode();

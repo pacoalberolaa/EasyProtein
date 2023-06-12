@@ -171,7 +171,7 @@
 
 <div class="opacity">
     <div class="productos">
-        <div th:each="producto:${productos}">
+        <div th:each="producto:${productos}" class="prodSearch">
             <div th:each="proteina : ${producto.proteinas}">
                 <a th:href="@{/proteina/{id}(id=${proteina.id})}">
                     <div class="divProductos">
@@ -187,26 +187,81 @@
                     </div>
                 </a>
             </div>
-            <div th:each="creatina : ${producto.creatinas}">
+
+            <div th:each="aminoacido : ${producto.aminoacidos}">
                 <a href="#">
                     <div class="divProductos">
-                        <img th:src="${creatina.imagenUrl}">
-                        <p th:text="${creatina.nombre}" class="nombre"></p>
+                        <img th:src="${aminoacido.imagenUrl}">
+                        <p th:text="${aminoacido.nombre}" class="nombre"></p>
                         <span>Marca</span>
-                        <span th:text="${creatina.marca}"></span>
+                        <span th:text="${aminoacido.marca}"></span>
                         <div class="precio">
                             <span >Desde:</span>
-                            <span th:text="${creatina.precio}"></span>
+                            <span th:text="${aminoacido.precio}"></span>
                             <span>€</span>
                         </div>
                     </div>
                 </a>
             </div>
+
+            <div th:each="barrita : ${producto.barritas}">
+                <a href="#">
+                    <div class="divProductos">
+                        <img th:src="${barrita.imagenUrl}">
+                        <p th:text="${barrita.nombre}" class="nombre"></p>
+                        <span>Marca</span>
+                        <span th:text="${barrita.marca}"></span>
+                        <div class="precio">
+                            <span >Desde:</span>
+                            <span th:text="${barrita.precio}"></span>
+                            <span>€</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div th:each="carbohidrato : ${producto.carbohidratos}">
+                <a href="#">
+                    <div class="divProductos">
+                        <img th:src="${carbohidrato.imagenUrl}">
+                        <p th:text="${carbohidrato.nombre}" class="nombre"></p>
+                        <span>Marca</span>
+                        <span th:text="${carbohidrato.marca}"></span>
+                        <div class="precio">
+                            <span >Desde:</span>
+                            <span th:text="${carbohidrato.precio}"></span>
+                            <span>€</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div th:each="vitamina : ${producto.vitaminas}">
+                <a href="#">
+                    <div class="divProductos">
+                        <img th:src="${vitamina.imagenUrl}">
+                        <p th:text="${vitamina.nombre}" class="nombre"></p>
+                        <span>Marca</span>
+                        <span th:text="${vitamina.marca}"></span>
+                        <div class="precio">
+                            <span >Desde:</span>
+                            <span th:text="${vitamina.precio}"></span>
+                            <span>€</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
         </div>
     </div>
 </div>
 
 <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  verificarDivOpacity();
+});
 
 <!--Despliega la barra lateal-->
     document.getElementById("openNav").addEventListener("click", function() {
@@ -235,6 +290,49 @@ document.addEventListener("click", function(event) {
         }
    }
 });
+
+// Obtener los elementos div por su clase
+var divs = document.getElementsByClassName("prodSearch");
+
+// Convertir la lista de elementos a un array para poder recorrerla
+var divsArray = Array.from(divs);
+
+// Recorrer la lista de elementos
+divsArray.forEach(function(div) {
+    // Verificar si el contenido del div está vacío
+    if (div.innerHTML.trim() === "") {
+        // Eliminar el div
+        div.remove();
+    }
+});
+
+function verificarDivOpacity() {
+  var opacityDiv = document.querySelector('.productos');
+
+  // Verificar si el elemento no existe o está vacío
+  if (!opacityDiv || opacityDiv.childElementCount === 0) {
+    alert('El div con clase "opacity" está vacío o no existe');
+    window.location.href = "http://localhost:8081/";
+    return;
+  }
+
+  // Verificar si el elemento tiene elementos ocultos
+  var productosDivs = opacityDiv.querySelectorAll('.prodSearch');
+  var tieneElementosOcultos = false;
+
+  for (var i = 0; i < productosDivs.length; i++) {
+    if (productosDivs[i].offsetParent === null) {
+      tieneElementosOcultos = true;
+      break;
+    }
+  }
+
+  if (tieneElementosOcultos) {
+    alert('El div con clase "opacity" contiene elementos ocultos');
+    window.location.href = "http://localhost:8081/";
+  }
+}
+
 
 
 

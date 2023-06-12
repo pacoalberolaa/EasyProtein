@@ -155,7 +155,7 @@ input[type="radio"]:checked + .radio__button::after {
 
 .producto-container {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .producto-imagen {

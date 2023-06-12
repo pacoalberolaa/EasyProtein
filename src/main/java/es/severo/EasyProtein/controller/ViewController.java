@@ -79,18 +79,19 @@ public class ViewController {
         }
     }
 
-    @GetMapping("/cesta/proteina/{id}")
-    public String cestaProteina(Model model, @PathVariable(value = "id") Long id) {
-        Proteina proteina = databaseService.findProteinaById(id).orElse(null);
-        if (proteina == null) {
-            return "redirect:/proteinas";
-        } else {
-            model.addAttribute("proteina", proteina);
-            return "cestaProteina";
-        }
-    }
+//    @GetMapping("/cesta/proteina/{id}")
+//    public String cestaProteina(Model model, @PathVariable(value = "id") Long id) {
+//        Proteina proteina = databaseService.findProteinaById(id).orElse(null);
+//        if (proteina == null) {
+//            return "redirect:/proteinas";
+//        } else {
+//            model.addAttribute("proteina", proteina);
+//            return "cestaProteina";
+//        }
+//    }
 
     //filtrar proteina por tipo, donde el tipo sea igual a "whey"
+
     @GetMapping("/proteinas/tipo/{tipo}")
     public String proteinasPorTipo(@PathVariable String tipo, @RequestParam(required = false) String tipoProteina, Model model) {
         if (tipoProteina.equalsIgnoreCase("whey")){
